@@ -1,0 +1,6 @@
+br\com\episteme\facilita\FacilitaApplication.class
+br\com\episteme\facilita\models\User.class
+br\com\episteme\facilita\controllers\UserController.class
+br\com\episteme\facilita\controllers\HelloController.class
+br\com\episteme\facilita\dto\RequisicaoNovoUser.class
+br\com\episteme\facilita\repository\UserRepository.class
