@@ -10,7 +10,7 @@ public class HelloController {
 
     @GetMapping("/inicial")
     public ModelAndView inicial() {
-        ModelAndView mv = new ModelAndView("inicial");  // nome do arquivo html a ser renderizado/exibido
+        ModelAndView mv = new ModelAndView("index");  // nome do arquivo html a ser renderizado/exibido
         return mv;  // o Spring vai renderizar o arquivo templates/inicial.html
     }
 }
