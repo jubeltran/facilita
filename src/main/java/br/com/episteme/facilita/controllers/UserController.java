@@ -26,7 +26,7 @@ public class UserController {
 
         List<User> usuarios = this.userRepository.findAll();
 
-        ModelAndView mv = new ModelAndView("usuarios/index");
+        ModelAndView mv = new ModelAndView("usuarios/lista");
         mv.addObject("usuarios", usuarios);
         return mv;
     }
