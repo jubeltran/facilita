@@ -33,7 +33,7 @@ public class UserController {
 
     @GetMapping("/cadastro")
     public ModelAndView nnew() {
-        ModelAndView mv = new ModelAndView("usuarios/new");
+        ModelAndView mv = new ModelAndView("usuarios/cadastro");
         return mv;
     }
 
@@ -50,7 +50,7 @@ public class UserController {
 
         if(bindingResult.hasErrors()){
             System.out.println("\n ************* Tem ERROS *********\n");
-            ModelAndView mv = new ModelAndView("usuarios/new");
+            ModelAndView mv = new ModelAndView("usuarios/cadastro");
             return mv;
 
         }
@@ -58,7 +58,7 @@ public class UserController {
             User u = requisicao.toUser();
             this.userRepository.save(u);
 
-            return new ModelAndView("redirect:/usuarios/new");
+            return new ModelAndView("redirect:/usuarios/cadastro");
         }
     }
 

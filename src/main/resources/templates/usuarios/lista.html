@@ -15,19 +15,18 @@
         <table class="table table-hover">
             <thead>
             <tr>
-                <th scope="col">ID</th>
                 <th scope="col">Nome</th>
                 <th scope="col">Email</th>
-                <th scope="col"></th>
+                <th scope="col">Senha</th>
                 <th scope="col"></th>
                 <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="usuario : ${usuarios}">
-                <th class="col-1" scope="row" th:text="${usuario.getId()}">ID</th>
                 <td class="col-4" th:text="${usuario.getNome()}">Nome do Vestibulando</td>
                 <td class="col-2" th:text="${usuario.getEmail()}">Email</td>
+                <td class="col-2" th:text="${usuario.getSenha()}">Senha</td>
                 <td class="col-1"><a href="#">Deletar</a></td>
             </tr>
             </tbody>
