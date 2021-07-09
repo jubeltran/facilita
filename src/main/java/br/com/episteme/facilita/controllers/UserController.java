@@ -44,8 +44,8 @@ public class UserController {
     }
 
     @PostMapping("/usuarios")
-    public ModelAndView create(@Valid RequisicaoNovoUser requisicao, BindingResult bindingResult){
-        System.out.println(requisicao);
+    public ModelAndView create(@Valid RequisicaoNovoUser requisicaoNovoUser, BindingResult bindingResult){
+        System.out.println(requisicaoNovoUser);
 
 
         if(bindingResult.hasErrors()){
@@ -55,7 +55,7 @@ public class UserController {
 
         }
         else {
-            User user = requisicao.toUser();
+            User user = requisicaoNovoUser.toUser();
             this.userRepository.save(user);
 
             return new ModelAndView("redirect:/usuarios");
