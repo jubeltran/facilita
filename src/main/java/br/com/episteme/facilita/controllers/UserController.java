@@ -58,7 +58,7 @@ public class UserController {
             User u = requisicao.toUser();
             this.userRepository.save(u);
 
-            return new ModelAndView("redirect:/usuarios/cadastro");
+            return new ModelAndView("redirect:/usuarios/lista");
         }
     }
 

@@ -8,9 +8,9 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class HelloController {
 
-    @GetMapping("/inicial")
+    @GetMapping("/home")
     public ModelAndView inicial() {
         ModelAndView mv = new ModelAndView("index");  // nome do arquivo html a ser renderizado/exibido
-        return mv;  // o Spring vai renderizar o arquivo templates/inicial.html
+        return mv;  // o Spring vai renderizar o arquivo templates/index.html
     }
 }
