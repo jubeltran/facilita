@@ -8,10 +8,10 @@ import javax.validation.constraints.NotNull;
 // É uma classe DTO (Data Transfer Object)
 public class RequisicaoNovoUser {
     @NotBlank
-    @NotNull
     private String nome; // em caso de erro, NotBlank.requisicaoNovoProfessor.nome
-    @NotNull
+    @NotBlank
     private String email;
+    @NotBlank
     private String senha;
 
     public String getNome() {
