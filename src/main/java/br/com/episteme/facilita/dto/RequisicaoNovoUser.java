@@ -37,6 +37,7 @@ public class RequisicaoNovoUser {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
     public User toUser(){
         User user = new User();
         user.setNome(this.nome);
@@ -44,6 +45,7 @@ public class RequisicaoNovoUser {
         user.setSenha(this.senha);
         return user;
     }
+
     @Override
     public String toString() {
         return "RequisicaoNovoUser{" +

@@ -43,7 +43,7 @@ public class UserController {
         return mv;
     }
 
-    @PostMapping("/usuarios")
+    @PostMapping("/salvarUsuario")
     public ModelAndView create(@Valid RequisicaoNovoUser requisicaoNovoUser, BindingResult bindingResult){
         System.out.println(requisicaoNovoUser);
 
