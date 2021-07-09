@@ -7,18 +7,15 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class User {
     @NotBlank
-    @NotNull
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(nullable = false)
     private String email;
     @NotBlank
-    @NotNull
     @Column(nullable = false)
     private String nome;
     @NotBlank
-    @NotNull
     @Column(nullable = false)
     private String senha;
 
@@ -62,14 +59,6 @@ public class User {
 
     public void setSenha(String senha) {
         this.senha = senha;
-    }
-
-    public User toUser(){
-        User user = new User();
-        user.setNome(this.nome);
-        user.setEmail(this.email);
-        user.setSenha(this.senha);
-        return user;
     }
 
 }

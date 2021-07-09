@@ -38,11 +38,11 @@ public class RequisicaoNovoUser {
         this.senha = senha;
     }
     public User toUser(){
-        User u = new User();
-        u.setNome(this.nome);
-        u.setEmail(this.email);
-        u.setSenha(this.senha);
-        return u;
+        User user = new User();
+        user.setNome(this.nome);
+        user.setEmail(this.email);
+        user.setSenha(this.senha);
+        return user;
     }
     @Override
     public String toString() {

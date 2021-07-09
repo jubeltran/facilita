@@ -1,5 +1,6 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-br">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,6 +25,7 @@
             </thead>
             <tbody>
             <tr th:each="usuario : ${usuarios}">
+                <td class="col-1" th:text="${usuario.getId()}">ID</td>
                 <td class="col-4" th:text="${usuario.getNome()}">Nome do Vestibulando</td>
                 <td class="col-2" th:text="${usuario.getEmail()}">Email</td>
                 <td class="col-2" th:text="${usuario.getSenha()}">Senha</td>
