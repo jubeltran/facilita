@@ -2,7 +2,6 @@ package br.com.episteme.facilita.dto;
 
 import br.com.episteme.facilita.models.User;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 
 // É uma classe DTO (Data Transfer Object)
@@ -44,6 +43,19 @@ public class RequisicaoNovoUser {
         user.setEmail(this.email);
         user.setSenha(this.senha);
         return user;
+    }
+
+    public User toUser(User user){
+        user.setNome(this.nome);
+        user.setEmail(this.email);
+        user.setSenha(this.senha);
+        return user;
+    }
+
+    public void formUser(User user) {
+        this.nome = user.getNome();
+        this.email = user.getEmail();
+        this.senha = user.getSenha();
     }
 
     @Override

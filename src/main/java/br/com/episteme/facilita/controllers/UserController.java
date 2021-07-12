@@ -3,8 +3,12 @@ package br.com.episteme.facilita.controllers;
 import br.com.episteme.facilita.dto.RequisicaoNovoUser;
 import br.com.episteme.facilita.models.User;
 import br.com.episteme.facilita.repository.UserRepository;
+import br.com.episteme.facilita.Exceptions.ServiceExc;
+import br.com.episteme.facilita.service.ServiceUser;
+import br.com.episteme.facilita.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,19 +24,26 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private ServiceUser userService;
+
+    @GetMapping("/home")
+    public ModelAndView index() {
+        ModelAndView mv = new ModelAndView("index");  // nome do arquivo html a ser renderizado/exibido
+        mv.addObject("user", new User());
+        return mv;  // o Spring vai renderizar o arquivo templates/index.html
+    }
 
     @GetMapping("/usuarios")
-    public ModelAndView index(){
-
-        List<User> usuarios = this.userRepository.findAll();
-
+    public ModelAndView lista(){
+        List<User> usuarios = userRepository.findAll();
         ModelAndView mv = new ModelAndView("usuarios/lista");
         mv.addObject("usuarios", usuarios);
         return mv;
     }
 
     @GetMapping("/cadastro")
-    public ModelAndView nnew(RequisicaoNovoUser requisicao) {
+    public ModelAndView cadastrar(RequisicaoNovoUser requisicao) {
         ModelAndView mv = new ModelAndView("usuarios/cadastro");
         return mv;
     }
@@ -44,22 +55,22 @@ public class UserController {
     }
 
     @PostMapping("/salvarUsuario")
-    public ModelAndView create(@Valid RequisicaoNovoUser requisicaoNovoUser, BindingResult bindingResult){
-        System.out.println(requisicaoNovoUser);
-
-
-        if(bindingResult.hasErrors()){
-            System.out.println("\n ************* Tem ERROS *********\n");
-            ModelAndView mv = new ModelAndView("/cadastro");
+    public ModelAndView create(@Valid RequisicaoNovoUser requisicao, BindingResult br) throws Exception {
+        System.out.println(requisicao);
+        if (br.hasErrors()) {
+            System.out.println("\n************* TEM ERROS ***************\n");
+            ModelAndView mv = new ModelAndView("usuarios/cadastro");
             return mv;
-
         }
-        else {
-            User user = requisicaoNovoUser.toUser();
-            this.userRepository.save(user);
 
-            return new ModelAndView("redirect:/usuarios");
+        boolean validacao = userService.validarEmail(requisicao);
+        if(validacao == true){
+            User user = requisicao.toUser();
+            user.setSenha(Util.md5(user.getSenha()));
+            userRepository.save(user);
         }
+        return lista();
     }
+
 
 }

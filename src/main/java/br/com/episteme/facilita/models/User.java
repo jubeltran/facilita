@@ -5,8 +5,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Entity
+@Table(name="\"user\"")
 public class User {
-    @NotBlank
+    @NotNull
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -23,7 +24,7 @@ public class User {
 
     }
 
-    public User(String email, String nome, String senha) {
+    public User(User user) {
         this.email = email;
         this.nome = nome;
         this.senha = senha;
@@ -60,5 +61,4 @@ public class User {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-
 }
