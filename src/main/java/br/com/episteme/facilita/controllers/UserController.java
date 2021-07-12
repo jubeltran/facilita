@@ -79,7 +79,7 @@ public class UserController {
             user.setSenha(Util.md5(user.getSenha()));
             userRepository.save(user);
         }
-        return lista();
+        return login();
     }
 
 
