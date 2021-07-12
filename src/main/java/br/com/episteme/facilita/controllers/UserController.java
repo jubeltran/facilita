@@ -13,7 +13,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 
@@ -54,6 +57,13 @@ public class UserController {
         return mv;
     }
 
+    @GetMapping("/saibaMais")
+    public ModelAndView info() {
+        ModelAndView mv = new ModelAndView("saibaMais");
+        return mv;
+    }
+
+
     @PostMapping("/salvarUsuario")
     public ModelAndView create(@Valid RequisicaoNovoUser requisicao, BindingResult br) throws Exception {
         System.out.println(requisicao);
@@ -73,4 +83,20 @@ public class UserController {
     }
 
 
+    @PostMapping("/login")
+    public ModelAndView login(@Valid User user, BindingResult br, HttpSession session) throws ServiceExc, NoSuchAlgorithmException {
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("user", new User());
+        if(br.hasErrors()){
+            mv.setViewName("usuarios/login");
+        }
+        User userLogin = userService.loginUser(user.getEmail(),Util.md5(user.getSenha()));
+        if(userLogin == null){
+            mv.addObject("mensagem", "Usuário não encontrado ou senha inválida");
+        } else
+        {
+           return index();
+        }
+        return mv;
+    }
 }
