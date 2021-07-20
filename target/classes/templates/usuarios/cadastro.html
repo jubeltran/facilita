@@ -54,6 +54,14 @@
                 left: 57%;
                 transform: translate(-50%,-50%);
             }
+
+            .erro h1 {
+                font-family: Roboto;
+                color: #FF0000;
+                font-size: 13px;
+                text-align: center;
+                margin-bottom: 8%;
+            }
         }
     </style>
     <!-- Bootstrap CSS -->
@@ -103,6 +111,10 @@
                 <div class="invalid-feedback" th:errors="*{senha}"></div>
             </div>
             <div class="d-grid gap-2">
+
+                <div class="erro" th:if="${mensagem}">
+                    <h1 class="erro" th:text="${mensagem}"></h1>
+                </div>
 
                 <button type="submit" class="btn-light btn btn-outline-dark btn-block">Cadastrar</button>
             </div>

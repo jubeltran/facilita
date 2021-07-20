@@ -55,9 +55,10 @@
         transform: translate(-50%,-50%);
       }
 
-      .erro{
+      .erro h1 {
+        font-family: Roboto;
         color: #FF0000;
-        font-size: 12px;
+        font-size: 13px;
         text-align: center;
         margin-bottom: 8%;
       }
@@ -73,9 +74,7 @@
 <div>
   <h1 id="titulo" class="display-4 text-center">Facilita</h1>
   <div>
-    <img src="/facilita/src/main/resources/img/logo.png" id="logo">
-
-
+    <img src= "../../img/logo.png" id="logo">
   </div>
 </div>
 </p>
@@ -104,7 +103,7 @@
       </div>
 
       <div class="erro" th:if="${mensagem}">
-        <strong th:text="${mensagem}"></strong>
+        <h1 class="erro" th:text="${mensagem}"></h1>
       </div>
 
       <div class="d-grid gap-2">

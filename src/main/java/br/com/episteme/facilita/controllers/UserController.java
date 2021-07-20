@@ -67,19 +67,19 @@ public class UserController {
     @PostMapping("/salvarUsuario")
     public ModelAndView create(@Valid RequisicaoNovoUser requisicao, BindingResult br) throws Exception {
         System.out.println(requisicao);
+        ModelAndView mv = new ModelAndView("usuarios/cadastro");
         if (br.hasErrors()) {
-            System.out.println("\n************* TEM ERROS ***************\n");
-            ModelAndView mv = new ModelAndView("usuarios/cadastro");
             return mv;
         }
 
-        boolean validacao = userService.validarEmail(requisicao);
-        if(validacao == true){
-            User user = requisicao.toUser();
-            user.setSenha(Util.md5(user.getSenha()));
-            userRepository.save(user);
+        if(userService.validarEmail(requisicao)){
+            userService.salvarUsuario(requisicao);
+            return login();
         }
-        return login();
+        else{
+            mv.addObject("mensagem", "Já existe um usuário cadastrado para esse email");
+            return mv;
+        }
     }
 
 
@@ -87,16 +87,17 @@ public class UserController {
     public ModelAndView login(@Valid User user, BindingResult br, HttpSession session) throws ServiceExc, NoSuchAlgorithmException {
         ModelAndView mv = new ModelAndView();
         mv.addObject("user", new User());
+
         if(br.hasErrors()){
             mv.setViewName("usuarios/login");
         }
-        User userLogin = userService.loginUser(user.getEmail(),Util.md5(user.getSenha()));
-        if(userLogin == null){
+
+        if(userService.loginUser(user.getEmail(),Util.md5(user.getSenha())) == null){
             mv.addObject("mensagem", "Usuário não encontrado ou senha inválida");
+            return mv;
         } else
         {
            return index();
         }
-        return mv;
     }
 }
