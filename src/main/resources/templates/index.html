@@ -68,7 +68,7 @@
                         <a class="nav-link" href="#" th:text="#{calendario}"></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Simulados</a>
+                        <a class="nav-link" href="#" th:text="#{simulados}"></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/logout" th:text="#{sair}"></a>
@@ -96,25 +96,22 @@
             <div class="text-center">
                 <br>
                 <br>
-                <h2 style="color: #032870;">Não sabe nem por onde começar a estudar?</h2>
-                <div style="margin: 20px;"></div>
-                <p style="color: #032870;">Está no lugar certo. Aqui no Facilita, nós te ajudamos. <br>
-                    Afinal, quem não quer um estudo já direcionado?</p>
-
-                <a href="/login"><button type="button" class="btn btn-outline-secondary">Entrar</button></a>
+                <h2 style="color: #032870;" th:text="#{index1}"></h2>
+                <p style="color: #032870;" th:text="#{index2}"/>
+                <p style="color: #032870;" th:text="#{index3}"/>
+                <br>
+                <a href="/login"><button type="button" class="btn btn-outline-secondary" th:text="#{fieldentrar}"></button></a>
                 <br>
                 <br>
-                <a href="/cadastro"><button type="button"
-                                                class="btn btn-outline-secondary">Cadastrar</button></a>
+                <a href="/cadastro"><button type="button" class="btn btn-outline-secondary" th:text="#{fieldcadastro}"></button></a>
             </div>
         </div>
         <div class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0">
             <div class="text-center">
                 <br>
-                <h1 style="color: #032870;">Então, seja bem-vindo!</h1>
-                <p style="color: #032870;">Para dar inicio a esse projeto, realize o melhor simulado diagnóstico
-                    conosco.</p>
-                <p style="color: #032870;">Primeiro, me diga, qual seu maior foco?</p>
+                <h1 style="color: #032870;" th:text="#{index4}"></h1>
+                <p style="color: #032870;" th:text="#{index5}"></p>
+                <p style="color: #032870;" th:text="#{index6}"></p>
 
                 <form>
                     <div class="form-check form-check-inline">
@@ -138,12 +135,11 @@
                         <label class="btn btn-outline-secondary rounded-pill" for="inlineRadio4">COMVEST</label>
                     </div>
                     <div style="margin: 10px;"></div>
-                    <button class="btn btn-light btn btn-outline-dark" type="button">Vamos lá</button>
+                    <button class="btn btn-light btn btn-outline-dark" type="button" th:text="#{index7}"></button>
                 </form>
                 <div style="margin: 13px;"></div>
-                <p style="color: #032870;"> Os principais vestibulares são diferentes entre si e você vai precisar
-                    estar atento a isso.</p>
-                <a href="/saibaMais"><button type="button" class="btn btn-outline-info">Saiba mais</button></a>
+                <p style="color: #032870;" th:text="#{index8}"></p>
+                <a href="/saibaMais"><button type="button" class="btn btn-outline-info" th:text="#{index9}"></button></a>
             </div>
         </div>
     </div>

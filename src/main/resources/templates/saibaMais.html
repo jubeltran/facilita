@@ -56,10 +56,10 @@
                 <ul class="nav flex-column">
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Calendario</a>
+                        <a class="nav-link" href="#" th:text="#{calendario}"></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Simulados</a>
+                        <a class="nav-link" href="#" th:text="#{simulados}"></a>
                     </li>
 
                 </ul>
@@ -98,37 +98,16 @@
     </div>
     <div class="row align-items-center">
         <div class="col">
-            <p style="text-align: justify;">
-                Prova conteudista com base no ensino médio, conhecida por cobrar matemática em maior parte de nível
-                básico e seu padrão de redação que exige uma proposta de intervenção ao problema em questão.
-                A prova possui 180 questões e uma redação e sua aplicação é dividida em dois dias, o primeiro onde
-                temos ciências humanas e linguagens + redação e, o segundo, composto de ciências matemáticas e da
-                natureza.
-                Alunos no último ano de seu ensino médio, estudantes de escola pública, tem direito a isenção da
-                taxa, além disso é válido consultar a isenção por renda entre outras causas.
-            </p>
+            <p style="text-align: justify;" th:text="#{text1}"> </p>
+        </div>
+        <div class="col" >
+            <p style="text-align: justify;" th:text="#{text2}"></p>
         </div>
         <div class="col">
-            <p style="text-align: justify;">Prova objetiva, conhecida pelo nível de dificuldade. O exame é um
-                processo, dividido em duas fases, é necessário ser classificado como aprovado na primeira para ir à
-                segunda.
-                A primeira fase apresenta uma prova de 90 questões tipo teste, cobrando conteúdo do ensino médio.
-                Caso aprovado, a segunda fase conta com questões dissertativas acerca das matérias específicas , que
-                variam de acordo com o curso escolhido e, também,
-                sobre as obras literárias obrigatórias + redação. A segunda fase é dividida também, em dois dias de
-                aplicação.</p>
+            <p style="text-align: justify;" th:text="#{text3}"></p>
         </div>
         <div class="col">
-            <p style="text-align: justify;">Prova de modelo similar a fuvest, porém com mais contextualização.
-                Sofreu alteração em sua primeira fase, deixando de ter 90 e passando a ter apenas 72 questões teste.
-                Segunda fase composta por questões dissertativas, que são cobrados assuntos de todos os blocos, mas
-                para cada curso, há matérias com peso maior e menor.</p>
-        </div>
-        <div class="col">
-            <p style="text-align: justify;"> Prova objetiva também com duas fases.
-                Primeira fase com 90 questões tipo teste, conteudista de ensino médio.
-                Segunda fase com questões específicas dissertativas, também contando com redação e conhecimento da
-                área de linguagens.</p>
+            <p style="text-align: justify;" th:text="#{text4}"></p>
         </div>
     </div>
 </div>
