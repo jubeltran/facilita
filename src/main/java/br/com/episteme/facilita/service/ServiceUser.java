@@ -1,26 +1,37 @@
 package br.com.episteme.facilita.service;
 
-import br.com.episteme.facilita.Exceptions.EmailExistsException;
-import br.com.episteme.facilita.Exceptions.ServiceExc;
 import br.com.episteme.facilita.dto.RequisicaoNovoUser;
+import br.com.episteme.facilita.models.AppUserRole;
 import br.com.episteme.facilita.models.User;
 import br.com.episteme.facilita.repository.UserRepository;
-import br.com.episteme.facilita.util.Util;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.ModelAndView;
 
-import java.security.NoSuchAlgorithmException;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
-public class ServiceUser {
+@RequiredArgsConstructor
+public class ServiceUser implements UserDetailsService {
 
     @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
-    public boolean validarEmail(RequisicaoNovoUser requisicao) throws EmailExistsException, NoSuchAlgorithmException {
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        return Optional.ofNullable(userRepository.findByEmail(email))
+                .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado"));
+    }
+
+    public boolean validarEmail(RequisicaoNovoUser requisicao){
         List<User> usuarios = userRepository.findAll();
         for (User usuario : usuarios) {
             if (requisicao.getEmail().equals(usuario.getEmail())) {
@@ -30,14 +41,33 @@ public class ServiceUser {
             return true;
     }
 
-    public void salvarUsuario(RequisicaoNovoUser requisicao) throws NoSuchAlgorithmException {
-        User user = requisicao.toUser();
-        user.setSenha(Util.md5(user.getSenha()));
-        userRepository.save(user);
-    }
+    public void salvarUsuario(RequisicaoNovoUser requisicao) {
+        if (requisicao.getEmail().equals("episteme.equipe@gmail.com")) {
+            User admin = new User(
+                    requisicao.getNome(),
+                    requisicao.getEmail(),
+                    requisicao.getSenha(),
+                    AppUserRole.ADMIN
+            );
+            String encodedPassword = bCryptPasswordEncoder
+                    .encode(admin.getSenha());
+            admin.setSenha(encodedPassword);
 
-    public User loginUser(String email, String senha) {
-        User userLogin = userRepository.findByLogin(email, senha);
-        return userLogin;
+            userRepository.save(admin);
+
+        } else {
+            User user = new User(
+                    requisicao.getNome(),
+                    requisicao.getEmail(),
+                    requisicao.getSenha(),
+                    AppUserRole.USER
+            );
+
+            String encodedPassword = bCryptPasswordEncoder
+                    .encode(user.getSenha());
+            user.setSenha(encodedPassword);
+
+            userRepository.save(user);
+        }
     }
 }

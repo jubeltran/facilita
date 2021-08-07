@@ -1,5 +1,6 @@
 package br.com.episteme.facilita.dto;
 
+import br.com.episteme.facilita.models.AppUserRole;
 import br.com.episteme.facilita.models.User;
 
 import javax.validation.constraints.Email;
@@ -11,10 +12,16 @@ import javax.validation.constraints.Size;
 public class RequisicaoNovoUser {
     @NotBlank
     private String nome; // em caso de erro, NotBlank.requisicaoNovoProfessor.nome
-    @NotBlank @Email
+    @NotBlank
     private String email;
     @NotBlank @Size(min=6,max=12)
     private String senha;
+
+    public RequisicaoNovoUser(String nome, String email, String senha) {
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+    }
 
     public String getNome() {
         return nome;
@@ -28,7 +35,7 @@ public class RequisicaoNovoUser {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(String username) {
         this.email = email;
     }
 
@@ -40,32 +47,11 @@ public class RequisicaoNovoUser {
         this.senha = senha;
     }
 
-    public User toUser(){
-        User user = new User();
-        user.setNome(this.nome);
-        user.setEmail(this.email);
-        user.setSenha(this.senha);
-        return user;
-    }
-
-    public User toUser(User user){
-        user.setNome(this.nome);
-        user.setEmail(this.email);
-        user.setSenha(this.senha);
-        return user;
-    }
-
-    public void formUser(User user) {
-        this.nome = user.getNome();
-        this.email = user.getEmail();
-        this.senha = user.getSenha();
-    }
-
     @Override
     public String toString() {
         return "RequisicaoNovoUser{" +
-                "nome='" + nome + '\'' +
-                ", email=" + email +
+                "nome='" + this.nome + '\'' +
+                ", email=" + this.email +
                 '}';
     }
 }

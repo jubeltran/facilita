@@ -20,16 +20,16 @@
                 <th scope="col">Nome</th>
                 <th scope="col">Email</th>
                 <th scope="col">Senha</th>
-                <th scope="col"></th>
+                <th scope="col">Role</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="usuario : ${usuarios}">
                 <td class="col-1" th:text="${usuario.getId()}">ID</td>
-                <td class="col-4" th:text="${usuario.getNome()}">Nome do Vestibulando</td>
-                <td class="col-2" th:text="${usuario.getEmail()}">Email</td>
+                <td class="col-4" th:text="${usuario.getNome()}">Nome</td>
+                <td class="col-2" th:text="${usuario.getUsername()}">Email</td>
                 <td class="col-2" th:text="${usuario.getSenha()}">Senha</td>
-                <td class="col-1"><a href="#">Deletar</a></td>
+                <td class="col-2" th:text="${usuario.getAuthorities()}">Role</td>
             </tr>
             </tbody>
         </table>

@@ -63,14 +63,15 @@
             </a>
             <ul class="dropdown-menu">
                 <ul class="nav flex-column">
-
                     <li class="nav-item">
                         <a class="nav-link" href="#">Calendario</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Simulados</a>
                     </li>
-
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout" th:text="#{sair}"></a>
+                    </li>
                 </ul>
             </ul>
         </li>
@@ -86,12 +87,9 @@
     </ul>
 </nav>
 
-<img src="../img/barra.svg" id="compt">
-
-
+<img th:src="@{barra.svg}" id="compt">
 
 <div class="container">
-
     <div class="row">
         <div class="col-sm-6 col-md-5 col-lg-6">
             <div class="text-center">
