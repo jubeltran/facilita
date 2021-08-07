@@ -28,7 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                    .antMatchers("/","/home","/cadastro","/salvarUsuario","/saibaMais").permitAll()
+                    .antMatchers("/","/home","/cadastro","/salvarUsuario","/saibaMais","/static/**").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -45,13 +45,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
                 .logoutSuccessUrl("/login");
-    }
-
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        web
-                .ignoring()
-                .antMatchers("src/main/resources/static/**");
     }
 
     @Override
