@@ -71,7 +71,7 @@ public class UserController {
             return mv;
         }
 
-        if(userService.validarEmail(requisicao)){
+        if (userService.validarEmail(requisicao)) {
             userService.salvarUsuario(requisicao);
             return login();
         } else {
