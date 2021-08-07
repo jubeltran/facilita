@@ -47,7 +47,8 @@
 <body id="fundo">
 <nav id="navbar-example2" class="navbar navbar-light bg-light px-3">
     <a class="navbar-brand" href="#">
-        <img src="../img/logoBranca.jpeg" alt="" width="40" height="40" class="d-inline-block align-text">
+        <img th:src="@{logobranca.jpeg}" alt="" width="40" height="40" class="d-inline-block align-text">
+       <!-- <img src="../img/logoBranca.jpeg" alt="" width="40" height="40" class="d-inline-block align-text">-->
         Facilita
     </a>
 
@@ -64,7 +65,7 @@
             <ul class="dropdown-menu">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Calendario</a>
+                        <a class="nav-link" href="#" th:text="#{calendario}"></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Simulados</a>
