@@ -45,50 +45,10 @@
 </head>
 
 <body id="fundo">
-<nav id="navbar-example2" class="navbar navbar-light bg-light px-3">
-    <a class="navbar-brand" href="#">
-        <img th:src="@{logobranca.jpeg}" alt="" width="40" height="40" class="d-inline-block align-text">
-       <!-- <img src="../img/logoBranca.jpeg" alt="" width="40" height="40" class="d-inline-block align-text">-->
-        Facilita
-    </a>
 
-    <ul class="nav" id="nav">
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-               aria-expanded="false">
-                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                     class="bi bi-list" viewBox="0 0 16 16" style="color: #032870;">
-                    <path fill-rule="evenodd"
-                          d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
-                </svg>
-            </a>
-            <ul class="dropdown-menu">
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" th:text="#{calendario}"></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" th:text="#{simulados}"></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/logout" th:text="#{sair}"></a>
-                    </li>
-                </ul>
-            </ul>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#scrollspyHeading1"><svg xmlns="http://www.w3.org/2000/svg" width="25"
-                                                               height="25" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16"
-                                                               style="color: #032870;">
-                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                <path fill-rule="evenodd"
-                      d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
-            </svg></a>
-        </li>
-    </ul>
-</nav>
+<div th:replace="navbar :: menuNav"></div>
 
-<img th:src="@{barra.svg}" id="compt">
+<img th:src="@{images/barra.svg}" id="compt">
 
 <div class="container">
     <div class="row">
