@@ -1,9 +1,5 @@
 package br.com.episteme.facilita.dto;
 
-import br.com.episteme.facilita.models.AppUserRole;
-import br.com.episteme.facilita.models.User;
-
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 

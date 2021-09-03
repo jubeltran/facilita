@@ -1,16 +1,21 @@
 package br.com.episteme.facilita.controllers;
 
 import br.com.episteme.facilita.dto.RequisicaoNovoUser;
+import br.com.episteme.facilita.models.Disciplina;
 import br.com.episteme.facilita.models.User;
 import br.com.episteme.facilita.repository.UserRepository;
 import br.com.episteme.facilita.service.ServiceUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -37,13 +42,6 @@ public class UserController {
         return mv;
     }
 
-    @GetMapping("/admin/cadastrarCurso")
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public ModelAndView cadCurso() {
-        ModelAndView mv = new ModelAndView("cadCurso");
-        return mv;
-    }
-
     @GetMapping("/cadastro")
     public ModelAndView cadastrar(RequisicaoNovoUser requisicao) {
         ModelAndView mv = new ModelAndView("usuarios/cadastro");
@@ -59,6 +57,14 @@ public class UserController {
     @GetMapping("/saibaMais")
     public ModelAndView info() {
         ModelAndView mv = new ModelAndView("saibaMais");
+        return mv;
+    }
+
+    @GetMapping("/perfil")
+    public static ModelAndView perfil(@AuthenticationPrincipal User usuario){
+        System.out.println(usuario);
+        ModelAndView mv = new ModelAndView("usuarios/perfil");
+        mv.addObject("usuario", usuario);
         return mv;
     }
 
