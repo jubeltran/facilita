@@ -73,29 +73,14 @@
                 <p style="color: #032870;" th:text="#{index5}"></p>
                 <p style="color: #032870;" th:text="#{index6}"></p>
 
-                <form>
-                    <div class="form-check form-check-inline">
+                <form action="/diagnostico">
+                    <div class="form-check form-check-inline" th:each="tipo : ${tipos}">
                         <input class="btn-check" type="radio" name="inlineRadioOptions" id="inlineRadio1"
-                               value="option1">
-                        <label class="btn btn-outline-secondary rounded-pill" for="inlineRadio1">ENEM</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="btn-check" type="radio" name="inlineRadioOptions" id="inlineRadio2"
-                               value="option2">
-                        <label class="btn btn-outline-secondary rounded-pill" for="inlineRadio2">FUVEST</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="btn-check" type="radio" name="inlineRadioOptions" id="inlineRadio3"
-                               value="option3">
-                        <label class="btn btn-outline-secondary rounded-pill" for="inlineRadio3">VUNESP</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="btn-check" type="radio" name="inlineRadioOptions" id="inlineRadio4"
-                               value="option4">
-                        <label class="btn btn-outline-secondary rounded-pill" for="inlineRadio4">COMVEST</label>
+                               th:value="${tipo}">
+                        <label class="btn btn-outline-secondary rounded-pill" for="inlineRadio1" th:text="${tipo}"></label>
                     </div>
                     <div style="margin: 10px;"></div>
-                    <button class="btn btn-light btn btn-outline-dark" type="button" th:text="#{index7}"></button>
+                    <button class="btn btn-light btn btn-outline-dark" type="submit" th:text="#{index7}"></button>
                 </form>
                 <div style="margin: 13px;"></div>
                 <p style="color: #032870;" th:text="#{index8}"></p>

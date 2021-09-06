@@ -2,6 +2,7 @@ package br.com.episteme.facilita.controllers;
 
 import br.com.episteme.facilita.dto.RequisicaoNovoUser;
 import br.com.episteme.facilita.models.Disciplina;
+import br.com.episteme.facilita.models.TipoDeProva;
 import br.com.episteme.facilita.models.User;
 import br.com.episteme.facilita.repository.UserRepository;
 import br.com.episteme.facilita.service.ServiceUser;
@@ -29,8 +30,9 @@ public class UserController {
 
     @GetMapping("/home")
     public ModelAndView index() {
-        ModelAndView mv = new ModelAndView("index");  // nome do arquivo html a ser renderizado/exibido
-        return mv;  // o Spring vai renderizar o arquivo templates/index.html
+        ModelAndView mv = new ModelAndView("index");
+        mv.addObject("tipos", TipoDeProva.values());
+        return mv;
     }
 
     @GetMapping("/admin/usuarios")

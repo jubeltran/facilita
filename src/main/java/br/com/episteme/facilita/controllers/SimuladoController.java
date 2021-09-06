@@ -54,4 +54,11 @@ public class SimuladoController {
         mv.addObject("questoes", questoes);
         return mv;
     }
+
+    @GetMapping("/diagnostico")
+    public ModelAndView simuladoInicial(TipoDeProva tipoDeProva) {
+        ModelAndView mv = new ModelAndView("usuarios/diagnostico");
+        mv.addObject("simuladoDiagnostico", serviceSimulado.simuladoDiagnostico(tipoDeProva));
+        return mv;
+    }
 }

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link href="style.css" rel="stylesheet" type="text/css"/>-->
+
+    <style>
+        #fundo {
+            background-color: #e6f5f7;
+        }
+
+        #lateral{
+            background-color: #032870;
+            display: block;
+            width: 375px;
+            height: 625px;
+            left: 0px;
+            position: absolute;
+        }
+
+        #perfil{
+            position: relative;
+            width: 244px;
+            height: 248px;
+            left: 65px;
+            top: 159px;
+            border-radius: 10%;
+        }
+
+        #user{
+            text-align: center;
+            position: relative;
+            width: 221px;
+            height: 42px;
+            margin-top: 48%;
+            margin-left: 20%;
+            font-size: 24px;
+            color: #ffffff;
+        }
+
+        #conteudo{
+            position: relative;
+            width: 770px;
+            margin-left: 40%;
+        }
+
+        .titulo{
+            padding-top: 10%;
+            font-size: 32px;
+            padding-bottom: 1%;
+            text-align: center;
+        }
+
+
+        li{
+            list-style: none;
+            align-content: center;
+            margin-bottom: 1%;
+        }
+
+        /**@media screen and (min-width: 768px){
+
+}**/
+
+    </style>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>Facilita</title>
+</head>
+
+<body id="fundo">
+
+<div th:replace="navbar :: menuNav"></div>
+<div id="lateral">
+    <img id="perfil" th:src="@{images/perfil.png}">
+    <!--/*@thymesVar id="usuario" type=""*/-->
+    <!--/*@thymesVar id="getNome" type=""*/-->
+    <h2 id="user" th:text="${usuario.getNome()}"></h2>
+</div>
+
+<div class="container">
+    <div class="row" id="conteudo">
+        <div class="col-6 col-sm-4" >
+            <h1 class="titulo"> Meus cursos favoritos</h1>
+            <ul>
+                <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+                </svg> <a href="#" class="btn btn-dark" role="button">Pedagogia</a></li>
+                <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+                </svg> <a href="#" class="btn btn-dark" role="button">Medicina</a></li>
+                <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+                </svg> <a href="#" class="btn btn-dark" role="button">Administração</a></li>
+            </ul>
+        </div>
+
+        <div style="width: 130px;"></div>
+
+
+        <div  style="height: min-content;" class="col-6 col-sm-4">
+            </br>
+
+            <div class="btn-group-vertical" role="group" aria-label="Basic radio toggle button group">
+
+                <h1 class="titulo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill-rule="evenodd" d="M7.886 1.553a1.75 1.75 0 012.869.604l.633 1.629a5.666 5.666 0 003.725 3.395l3.959 1.131a1.75 1.75 0 01.757 2.92L16.06 15l5.594 5.595a.75.75 0 11-1.06 1.06L15 16.061l-3.768 3.768a1.75 1.75 0 01-2.92-.757l-1.131-3.96a5.667 5.667 0 00-3.395-3.724l-1.63-.633a1.75 1.75 0 01-.603-2.869l6.333-6.333zm6.589 12.912l-.005.005-.005.005-4.294 4.293a.25.25 0 01-.417-.108l-1.13-3.96A7.166 7.166 0 004.33 9.99L2.7 9.356a.25.25 0 01-.086-.41l6.333-6.332a.25.25 0 01.41.086l.633 1.63a7.167 7.167 0 004.71 4.293l3.96 1.131a.25.25 0 01.108.417l-4.293 4.294z"></path></svg>  Meu foco</h1>
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                <label class="btn btn-outline-dark" for="btnradio1">ENEM</label>
+
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                <label class="btn btn-outline-dark" for="btnradio2">FUVEST</label>
+
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+                <label class="btn btn-outline-dark" for="btnradio3">COMVEST</label>
+            </div>
+        </div>
+
+        <div class="col-9"> <h1 class="titulo"> Gráfico de Evolução</h1>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M1.5 1.75a.75.75 0 00-1.5 0v12.5c0 .414.336.75.75.75h14.5a.75.75 0 000-1.5H1.5V1.75zm14.28 2.53a.75.75 0 00-1.06-1.06L10 7.94 7.53 5.47a.75.75 0 00-1.06 0L3.22 8.72a.75.75 0 001.06 1.06L7 7.06l2.47 2.47a.75.75 0 001.06 0l5.25-5.25z"></path></svg></div>
+    </div>
+</div>
+
+</body>
+</html>
