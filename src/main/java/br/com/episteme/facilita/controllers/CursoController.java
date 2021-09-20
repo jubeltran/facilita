@@ -11,9 +11,11 @@ import br.com.episteme.facilita.service.ServiceCurso;
 import br.com.episteme.facilita.service.ServiceSimulado;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -30,14 +32,23 @@ public class CursoController {
     private ServiceCurso serviceCurso;
 
     @GetMapping("/geral")
-    public ModelAndView geralcursos() {
+    public ModelAndView geralCursos() {
         ModelAndView mv = new ModelAndView("usuarios/geral");
+        return mv;
+    }
+
+    @GetMapping("curso/{nome}")
+    public ModelAndView pagCurso(@PathVariable String nome, @AuthenticationPrincipal User usuario) {
+        ModelAndView mv = new ModelAndView("usuarios/curso");
+        Curso curso = cursoRepository.findByNome(nome);
+        mv.addObject("curso", curso);
+        mv.addObject("usuario", usuario);
         return mv;
     }
 
     @GetMapping("/cadcursos")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public ModelAndView cadcursos(RequisicaoNovoCurso requisicaoNovoCurso) {
+    public ModelAndView cadCursos(RequisicaoNovoCurso requisicaoNovoCurso) {
         ModelAndView mv = new ModelAndView("admin/cadcursos");
         mv.addObject("tipos", TipoDeCurso.values());
         return mv;
@@ -62,6 +73,14 @@ public class CursoController {
         List<Curso> cursos = cursoRepository.findAll();
         ModelAndView mv = new ModelAndView("admin/cursos");
         mv.addObject("cursos", cursos);
+        return mv;
+    }
+
+    @PostMapping("/addfav")
+    public ModelAndView addFav(@AuthenticationPrincipal User usuario, String fav){
+        serviceCurso.addFavorito(usuario, fav);
+        ModelAndView mv = new ModelAndView("usuarios/perfil");
+        mv.addObject("usuario", usuario);
         return mv;
     }
 

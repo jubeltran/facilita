@@ -48,7 +48,7 @@
 
 <div th:replace="navbar :: menuNav"></div>
 
-<img th:src="@{images/barra.svg}" id="compt">
+<img th:src="@{images/barra.svg}" alt="Capa da página principal" id="compt">
 
 <div class="container">
     <div class="row">
@@ -60,10 +60,10 @@
                 <p style="color: #032870;" th:text="#{index2}"/>
                 <p style="color: #032870;" th:text="#{index3}"/>
                 <br>
-                <a href="/login"><button type="button" class="btn btn-outline-secondary" th:text="#{fieldentrar}"></button></a>
+                <button type="button" class="btn btn-outline-secondary" th:text="#{fieldentrar}"><a href="/login"></a></button>
                 <br>
                 <br>
-                <a href="/cadastro"><button type="button" class="btn btn-outline-secondary" th:text="#{fieldcadastro}"></button></a>
+                <button type="button" class="btn btn-outline-secondary" th:text="#{fieldcadastro}"><a href="/cadastro"></a></button>
             </div>
         </div>
         <div class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0">

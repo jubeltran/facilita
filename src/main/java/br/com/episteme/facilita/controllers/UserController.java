@@ -70,7 +70,6 @@ public class UserController {
         return mv;
     }
 
-
     @PostMapping("/salvarUsuario")
     public ModelAndView create(@Valid RequisicaoNovoUser requisicao, BindingResult br) throws Exception {
         System.out.println(requisicao);

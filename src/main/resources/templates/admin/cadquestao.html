@@ -33,26 +33,6 @@
             <label for="texto">Texto da questão:</label>
             <input class="form-control" th:errorclass="is-invalid" id="texto" rows="3" th:field="*{texto}" type="text"></input>
         </div>
-        <div class="form-group">
-            <label for="a1">Alternativa 1: </label>
-            <input class="form-control" th:errorclass="is-invalid" id="a1" rows="1" th:field="*{a1}" type="text"></input>
-        </div>
-        <div class="form-group">
-            <label for="a2">Alternativa 2: </label>
-            <input class="form-control" th:errorclass="is-invalid" id="a2" rows="1" th:field="*{a2}" type="text"></input>
-        </div>
-        <div class="form-group">
-            <label for="a3">Alternativa 3: </label>
-            <input class="form-control" th:errorclass="is-invalid" id="a3" rows="1" th:field="*{a3}" type="text"></input>
-        </div>
-        <div class="form-group">
-            <label for="a4">Alternativa 4: </label>
-            <input class="form-control" th:errorclass="is-invalid" id="a4" rows="1" th:field="*{a4}" type="text"></input>
-        </div>
-        <div class="form-group">
-            <label for="a5">Alternativa Certa: </label>
-            <input class="form-control" th:errorclass="is-invalid" id="a5" rows="1" th:field="*{certa}" type="text"></input>
-        </div>
         <br>
         <button type="submit" class="btn btn-primary">Cadastrar</button>
     </form>
@@ -61,7 +41,7 @@
     <br>
     <div class="alert alert-success" role="alert" th:if="${mensagem}">
         <h4 class="alert-heading" th:text="${mensagem}"></h4>
-        <p>Para cadastrar uma nova questão basta clicar aqui em: <a href="/cadquestao" class="alert-link">Novo Cadastro</a> </p>
+        <p>Para cadastrar uma nova questão basta clicar aqui em: <a href="/cadalternativa" class="alert-link">Novo Cadastro</a> </p>
     </div>
 
 </div>

@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -24,7 +25,6 @@ import java.util.stream.Collectors;
 @Table(name="\"user\"")
 
 public class User implements UserDetails {
-
 
     @NotNull
     @Id
@@ -42,6 +42,12 @@ public class User implements UserDetails {
     @Column
     @Enumerated(EnumType.STRING)
     private AppUserRole appUserRole;
+    @Column
+    private String fav1 = null;
+    @Column
+    private String fav2 = null;
+    @Column
+    private String fav3 = null;
 
     public User(User user) {
         this.email = email;
@@ -108,6 +114,30 @@ public class User implements UserDetails {
 
     public String getNome() {
         return nome;
+    }
+
+    public String getFav1() {
+        return fav1;
+    }
+
+    public void setFav1(String fav1) {
+        this.fav1 = fav1;
+    }
+
+    public String getFav2() {
+        return fav2;
+    }
+
+    public void setFav2(String fav2) {
+        this.fav2 = fav2;
+    }
+
+    public String getFav3() {
+        return fav3;
+    }
+
+    public void setFav3(String fav3) {
+        this.fav3 = fav3;
     }
 }
 

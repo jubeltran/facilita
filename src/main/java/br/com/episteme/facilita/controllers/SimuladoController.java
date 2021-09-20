@@ -1,4 +1,5 @@
 package br.com.episteme.facilita.controllers;
+import br.com.episteme.facilita.dto.RequisicaoNovaAlternativa;
 import br.com.episteme.facilita.dto.RequisicaoNovaQuestao;
 import br.com.episteme.facilita.models.Disciplina;
 import br.com.episteme.facilita.models.Questao;
@@ -36,6 +37,13 @@ public class SimuladoController {
         return mv;
     }
 
+    @GetMapping("/cadalternativa")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ModelAndView cadalternativa(RequisicaoNovaAlternativa requisicaoNovaAlternativa) {
+        ModelAndView mv = new ModelAndView("admin/cadalternativa");
+        return mv;
+    }
+
     @PostMapping("/salvarQuestao")
     public ModelAndView create(@Valid RequisicaoNovaQuestao requisicaoNovaQuestao, BindingResult br) {
         System.out.println(requisicaoNovaQuestao);
@@ -43,6 +51,16 @@ public class SimuladoController {
         if (br.hasErrors()) return mv;
         serviceSimulado.salvarQuestao(requisicaoNovaQuestao);
         mv.addObject("mensagem", "Questão Cadastrada!");
+        return mv;
+    }
+
+    @PostMapping("/salvarAlternativa")
+    public ModelAndView create(@Valid RequisicaoNovaAlternativa requisicaoNovaAlternativa, BindingResult br) {
+        System.out.println(requisicaoNovaAlternativa);
+        ModelAndView mv = new ModelAndView("admin/cadquestao");
+        if (br.hasErrors()) return mv;
+        serviceSimulado.salvarAlternativa(requisicaoNovaAlternativa);
+        mv.addObject("mensagem", "Alternativa Cadastrada!");
         return mv;
     }
 
@@ -55,10 +73,11 @@ public class SimuladoController {
         return mv;
     }
 
-    @GetMapping("/diagnostico")
+    /*@GetMapping("/diagnostico")
     public ModelAndView simuladoInicial(TipoDeProva tipoDeProva) {
         ModelAndView mv = new ModelAndView("usuarios/diagnostico");
         mv.addObject("simuladoDiagnostico", serviceSimulado.simuladoDiagnostico(tipoDeProva));
         return mv;
     }
+     */
 }
