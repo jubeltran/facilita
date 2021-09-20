@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" xmlns:button="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title th:text="${curso.getNome()}"></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link href="style.css" rel="stylesheet" type="text/css"/>
+    <script src="script.js"></script>
+</head>
+
+<body>
+<div th:replace="navbar :: menuNav"></div>
+<h2 th:text="${curso.getNome()}"></h2>
+
+<form id="favoritar" th:object="${usuario}" action="/addFav" method="POST">
+    <button:hover><img id="favorito" th:src="@{images/favoritop.png}" style="width:165%"></button:hover>
+</form>
+
+<img id="fundo" th:src="@{images/cursox.png}" style="width:100%">
+
+
+<p th:text="${curso.getDescricao()}"></p>
+
+
+<h4>Melhores Universidades</h4>
+<p th:text="${curso.getUniversidade1()}">1° Faculdade 1</p>
+<p th:text="${curso.getUniversidade2()}">2° Faculdade 2</p>
+<p th:text="${curso.getUniversidade3()}">1° Faculdade 3</p>
+
+
+<h4>Notas de Corte</h4>
+<p>SISU:</p>
+<p th:text="${curso.getCorteSisu()}"></p>
+<p>ProUNI:</p>
+<p>Fuvest</p>
+<p th:text="${curso.getCorteFuvest()}"></p>
+<p>Convest:</p>
+
+<div>
+    <h4>Ainda em dúvida?</h4>
+    <p>Confira alguns perfis de universitários e formados retratando a rotina do curso.</p>
+    <p th:text="${curso.getInsta()}"></p>
+</div>
+
+</body>
+
+</html>
