@@ -5,7 +5,6 @@ import br.com.episteme.facilita.models.TipoDeProva;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class RequisicaoNovaQuestao {
@@ -16,7 +15,7 @@ public class RequisicaoNovaQuestao {
     @Enumerated(EnumType.STRING)
     private TipoDeProva tipoDeProva;
 
-    public RequisicaoNovaQuestao(String texto, String a1, String a2, String a3, String a4, String certa, Disciplina disciplina, TipoDeProva tipoDeProva) {
+    public RequisicaoNovaQuestao(String texto, Disciplina disciplina, TipoDeProva tipoDeProva) {
         this.texto = texto;
         this.disciplina = disciplina;
         this.tipoDeProva = tipoDeProva;

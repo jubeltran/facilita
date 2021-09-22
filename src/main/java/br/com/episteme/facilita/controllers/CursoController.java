@@ -38,7 +38,7 @@ public class CursoController {
     }
 
     @GetMapping("curso/{nome}")
-    public ModelAndView pagCurso(@PathVariable String nome, @AuthenticationPrincipal User usuario) {
+    public ModelAndView pagCurso(@PathVariable("nome") String nome, @AuthenticationPrincipal User usuario) {
         ModelAndView mv = new ModelAndView("usuarios/curso");
         Curso curso = cursoRepository.findByNome(nome);
         mv.addObject("curso", curso);

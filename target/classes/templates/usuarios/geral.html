@@ -8,13 +8,13 @@
     #fundo {
       background-color: #e6f5f7;
     }
-    #bt{
+    .bt{
       border-radius: 30px;
       color: #032870;
       border-color: #032870;
     }
 
-    #img{
+    .img{
       border-radius: 35px;
     }
   </style>
@@ -52,8 +52,8 @@
   <div class="row align-items-start">
     <div class="col">
       <div class="x">
-        <button id="bt">
-          <img id="img" th:src="@{images/biologicas.png}" style="width:100%">
+        <button id="b" class="bt">
+          <img id="bio" class="img" th:src="@{images/biologicas.png}" style="width:100%">
             <h4 class="titulo" style="text-align:center">Biológicas</h4>
         </button>
 
@@ -61,16 +61,16 @@
     </div>
     <div class="col">
       <div class="x">
-        <button id="bt">
-          <img id="img" th:src="@{images/exatas.png}" style="width:100%">
-          <h4 class=titulo" style="text-align:center">Exatas</h4>
+        <button id="bt" class="bt">
+          <img id="exatas" class="img" th:src="@{images/exatas.png}" style="width:100%">
+          <h4 class="titulo" style="text-align:center">Exatas</h4>
         </button>
       </div>
     </div>
     <div class="col">
       <div class="x">
-        <button id="bt">
-          <img id="img" th:src="@{images/humanas.png}" style="width:100%">
+        <button id="humanas" class="bt">
+          <img id="img" class="img" th:src="@{images/humanas.png}" style="width:100%">
           <h4 class="titulo" style="text-align:center">Humanas</h4>
         </button>
       </div>

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-  <title>Cadastro - Questões</title>
+  <title>Cadastro - Alternativas</title>
 </head>
 
 <body>
@@ -13,26 +13,39 @@
 <div class="container">
   <!--/*@thymesVar id="requisicaoNovaAlternativa" type=""*/-->
   <form th:object="${requisicaoNovaAlternativa}" action="salvarAlternativa" name="cadalternativa" method="POST">
-    <div class="form-check">
-      <input name="tf" type="radio" th:field="*{certa}"  value="true"/>
-      <label for="texto">Texto da alternativa 1:</label><br>
-       <input class="form-control" th:errorclass="is-invalid" id="texto" rows="3" th:field="*{texto}" type="text"></input>
-      <br>
-      <button type="submit" class="btn btn-primary">Cadastrar</button>
+    <div class="form-group">
+      <label for="questao">Selecione a questão da qual pertence essa alternativa</label>
+      <select class="form-control" id="questao" th:field="*{idquestao}">
+        <option th:each="q : ${questoes}"
+                th:value="${q.getId()}"
+                th:text="${q.getTexto()}"/>
+      </select>
     </div>
-      </input>
+    <br>
+    <div class="form-check">
+      <label>É a alternativa certa?</label>
+      <input type="radio" th:field="*{certa}" value="1" th:checked="checked">Sim
+      <input type="radio" th:field="*{certa}" value="0">Não
+      <br>
+    </div>
+    <div class="form-group">
+      <label for="texto">Texto da alternativa</label><br>
+       <input class="form-control" th:errorclass="is-invalid" id="texto" rows="3" th:field="*{texto}" type="text">
+      <br>
+    </div>
+      <button type="submit" class="btn btn-primary">Cadastrar</button>
   </form>
 </div>
   <br>
   <br>
   <div class="alert alert-success" role="alert" th:if="${mensagem}">
     <h4 class="alert-heading" th:text="${mensagem}"></h4>
-    <p>Para cadastrar uma nova alternativa basta clicar aqui em: <a href="/cadalternativa" class="alert-link">Novo Cadastro</a> </p>
+    <p>Para cadastrar a próxima alternativa basta clicar aqui em: <a href="/cadalternativa" class="alert-link">Nova Alternativa</a> </p>
   </div>
 
   <div class="alert alert-success" role="alert" th:if="${mensagem}">
     <h4 class="alert-heading" th:text="${mensagem}"></h4>
-    <p>Para cadastrar uma nova questão basta clicar aqui em: <a href="/cadquestao" class="alert-link">Novo Cadastro</a> </p>
+    <p>Ao acabar as alternativas, para cadastrar uma nova questão basta clicar aqui em: <a href="/cadquestao" class="alert-link">Nova Questão</a> </p>
   </div>
 
 </div>

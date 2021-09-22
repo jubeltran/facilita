@@ -11,10 +11,7 @@ import br.com.episteme.facilita.repository.QuestaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class ServiceSimulado {
@@ -36,10 +33,12 @@ public class ServiceSimulado {
         questaoRepository.save(questao);
     }
 
-    public void salvarAlternativa(RequisicaoNovaAlternativa requisicaoNovaAlternativa) {
+    public void salvarAlternativa(RequisicaoNovaAlternativa requisicaoNovaAlternativa, Long idquestao) {
+        Optional<Questao> questaoOptional = questaoRepository.findById(idquestao);
         Alternativa a = new Alternativa(
                 requisicaoNovaAlternativa.isCerta(),
-                requisicaoNovaAlternativa.getTexto()
+                requisicaoNovaAlternativa.getTexto(),
+                questaoOptional.get()
                 );
         alternativaRepository.save(a);
     }

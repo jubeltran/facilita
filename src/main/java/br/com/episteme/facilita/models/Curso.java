@@ -8,12 +8,12 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Data
 public class Curso {
     @NotNull
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @NotBlank
     @Column(nullable = false)
     private String nome;
     @NotBlank
@@ -64,6 +64,7 @@ public class Curso {
     public String getNome() {
         return nome;
     }
+
     public void setNome(String nome) {
         this.nome = nome;
     }

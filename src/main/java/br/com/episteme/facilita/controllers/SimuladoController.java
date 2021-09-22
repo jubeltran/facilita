@@ -40,7 +40,9 @@ public class SimuladoController {
     @GetMapping("/cadalternativa")
     @PreAuthorize("hasAuthority('ADMIN')")
     public ModelAndView cadalternativa(RequisicaoNovaAlternativa requisicaoNovaAlternativa) {
+        List<Questao> questoes = questaoRepository.findAll();
         ModelAndView mv = new ModelAndView("admin/cadalternativa");
+        mv.addObject("questoes", questoes);
         return mv;
     }
 
@@ -55,11 +57,11 @@ public class SimuladoController {
     }
 
     @PostMapping("/salvarAlternativa")
-    public ModelAndView create(@Valid RequisicaoNovaAlternativa requisicaoNovaAlternativa, BindingResult br) {
+    public ModelAndView create(RequisicaoNovaAlternativa requisicaoNovaAlternativa, BindingResult br) {
         System.out.println(requisicaoNovaAlternativa);
-        ModelAndView mv = new ModelAndView("admin/cadquestao");
+        ModelAndView mv = new ModelAndView("admin/cadalternativa");
         if (br.hasErrors()) return mv;
-        serviceSimulado.salvarAlternativa(requisicaoNovaAlternativa);
+        serviceSimulado.salvarAlternativa(requisicaoNovaAlternativa, requisicaoNovaAlternativa.getIdquestao());
         mv.addObject("mensagem", "Alternativa Cadastrada!");
         return mv;
     }

@@ -35,6 +35,14 @@ public class UserController {
         return mv;
     }
 
+    @GetMapping("/admin/home")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ModelAndView inicial() {
+        ModelAndView mv = new ModelAndView("admin/home");
+        mv.addObject("tipos", TipoDeProva.values());
+        return mv;
+    }
+
     @GetMapping("/admin/usuarios")
     @PreAuthorize("hasAuthority('ADMIN')")
     public ModelAndView lista() {
