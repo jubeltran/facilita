@@ -60,10 +60,15 @@
                 <p style="color: #032870;" th:text="#{index2}"/>
                 <p style="color: #032870;" th:text="#{index3}"/>
                 <br>
-                <button type="button" class="btn btn-outline-secondary" th:text="#{fieldentrar}"><a href="/login"></a></button>
+                <form action="/login">
+                    <button type="submit" class="btn btn-outline-secondary" th:text="#{fieldentrar}"></button>
+                </form>
                 <br>
                 <br>
-                <button type="button" class="btn btn-outline-secondary" th:text="#{fieldcadastro}"><a href="/cadastro"></a></button>
+                <form action="/cadastro">
+                    <button type="submit" class="btn btn-outline-secondary" th:text="#{fieldcadastro}"></button>
+                </form>
+                <br>
             </div>
         </div>
         <div class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0">
