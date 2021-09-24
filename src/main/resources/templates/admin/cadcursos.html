@@ -15,43 +15,43 @@
   <form th:object="${requisicaoNovoCurso}" action="salvarCurso" name="cadcursos" method="POST">
     <label>Área do curso</label>
     <div class="form-check" th:each="tipo : ${tipos}">
-      <input name="tipo" type="radio" th:field="*{tipoDeCurso}" th:value="${tipo}"/>
-      <label th:text="${tipo} "></label>
+      <input name="tipo" th:field="*{tipoDeCurso}" th:value="${tipo}" type="radio"/>
+      <label th:text="${tipo.name()} "></label>
       </input>
     </div>
     <div class="form-group">
       <label >Nome do curso</label>
-      <input class="form-control" th:errorclass="is-invalid" id="nome" rows="1" type="text" th:field="*{nome}"></input>
+      <input class="form-control" th:errorclass="is-invalid" id="nome" type="text" th:field="*{nome}"></input>
     </div>
 
     <div class="form-group">
       <label >Descrição rápida do curso</label>
-      <input class="form-control" th:errorclass="is-invalid" id="descricao" rows="3" th:field="*{descricao}" type="text"></input>
+      <input class="form-control" th:errorclass="is-invalid" id="descricao" th:field="*{descricao}" type="text"></input>
     </div>
 
     <div class="form-group">
       <label>Melhor faculdade 1</label>
-      <input class="form-control" th:errorclass="is-invalid" id="f1" rows="1" th:field="*{universidade1}" type="text"></input>
+      <input class="form-control" th:errorclass="is-invalid" id="f1"  th:field="*{universidade1}" type="text"></input>
     </div>
     <div class="form-group">
       <label>Melhor faculdade 2</label>
-      <input class="form-control" th:errorclass="is-invalid" id="f2" rows="1" th:field="*{universidade2}" type="text"></input>
+      <input class="form-control" th:errorclass="is-invalid" id="f2" th:field="*{universidade2}" type="text"></input>
     </div>
     <div class="form-group">
       <label >Melhor faculdade 3</label>
-      <input class="form-control" th:errorclass="is-invalid" id="f3" rows="1" th:field="*{universidade3}" type="text"></input>
+      <input class="form-control" th:errorclass="is-invalid" id="f3" th:field="*{universidade3}" type="text"></input>
     </div>
     <div class="form-group">
       <label>Instagram de alguém que faça</label>
-      <input class="form-control" th:errorclass="is-invalid" id="insta" rows="1" th:field="*{insta}" type="text"></input>
+      <input class="form-control" th:errorclass="is-invalid" id="insta"  th:field="*{insta}" type="text"></input>
     </div>
     <div class="form-group">
       <label>Nota de Corte SISU</label>
-      <input class="form-control" th:errorclass="is-invalid" id="cortesisu" rows="1" th:field="*{corteSisu}" type="text"></input>
+      <input class="form-control" th:errorclass="is-invalid" id="cortesisu"  th:field="*{corteSisu}" type="text"></input>
     </div>
     <div class="form-group">
       <label>Nota de Corte FUVEST</label>
-      <input class="form-control" th:errorclass="is-invalid" id="cortefuv" rows="1" th:field="*{corteFuvest}" type="text"></input>
+      <input class="form-control" th:errorclass="is-invalid" id="cortefuv" th:field="*{corteFuvest}" type="text"></input>
     </div>
 
     <br>

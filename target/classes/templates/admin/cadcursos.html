@@ -15,8 +15,8 @@
   <form th:object="${requisicaoNovoCurso}" action="salvarCurso" name="cadcursos" method="POST">
     <label>Área do curso</label>
     <div class="form-check" th:each="tipo : ${tipos}">
-      <input name="tipo" type="radio" th:field="*{tipoDeCurso}" th:value="${tipo}"/>
-      <label th:text="${tipo} "></label>
+      <input name="tipo" th:field="*{tipoDeCurso}" th:value="${tipo}" type="radio"/>
+      <label th:text="${tipo.name()} "></label>
       </input>
     </div>
     <div class="form-group">
