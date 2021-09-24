@@ -6,6 +6,7 @@ import lombok.Data;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Curso {
@@ -18,6 +19,7 @@ public class Curso {
     private String nome;
     @NotBlank
     @Column(nullable = false)
+    @Size(max = 10000)
     private String descricao;
     @NotBlank
     @Column(nullable = false)
