@@ -55,14 +55,13 @@ public class CursoController {
     }
 
     @PostMapping("/salvarCurso")
-    public ModelAndView salvar(@Valid RequisicaoNovoCurso requisicaoNovoCurso, BindingResult br) throws Exception {
+    public ModelAndView salvar(@Valid RequisicaoNovoCurso requisicaoNovoCurso, BindingResult br) {
         ModelAndView mv = new ModelAndView("admin/cadcursos");
         System.out.println(requisicaoNovoCurso);
-        mv.addObject("requisicao", requisicaoNovoCurso);
+        mv.addObject("requisicaNovoCurso", requisicaoNovoCurso);
         if (!br.hasErrors()) {
             serviceCurso.salvarCurso(requisicaoNovoCurso);
             mv.addObject("mensagem", "Curso cadastrado!");
-            return mv;
         }
         return mv;
     }

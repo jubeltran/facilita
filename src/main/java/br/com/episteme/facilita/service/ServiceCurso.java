@@ -27,7 +27,7 @@ public class ServiceCurso {
                 requisicaoNovoCurso.getCorteSisu(),
                 requisicaoNovoCurso.getCorteFuvest(),
                 requisicaoNovoCurso.getTipoDeCurso()
-        );
+                );
         cursoRepository.save(curso);
     }
 
