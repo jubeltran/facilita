@@ -76,15 +76,15 @@ public class SimuladoController {
     }
 
     @GetMapping("/diagnostico")
-    public ModelAndView simuladoDiagnostico(String tipoDeProva){
+    public ModelAndView simuladoDiagnostico(TipoDeProva tipoDeProva){
         ModelAndView mv = new ModelAndView("usuarios/diagnostico");
         return mv;
     }
 
     @PostMapping("/diagnostico")
-    public ModelAndView simuladoInicial(String tipoDeProva) {
+    public ModelAndView simuladoInicial(TipoDeProva tipoDeProva) {
         ModelAndView mv = new ModelAndView("usuarios/diagnostico");
-        mv.addObject("simuladoDiagnostico", serviceSimulado.simuladoDiagnostico(tipoDeProva));
+        mv.addObject("simuladoDiagnostico", serviceSimulado.simuladoDiagnostico(tipoDeProva.name()));
         return mv;
     }
 }
