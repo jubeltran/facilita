@@ -2,10 +2,7 @@ package br.com.episteme.facilita.service;
 
 import br.com.episteme.facilita.dto.RequisicaoNovaAlternativa;
 import br.com.episteme.facilita.dto.RequisicaoNovaQuestao;
-import br.com.episteme.facilita.models.Alternativa;
-import br.com.episteme.facilita.models.Disciplina;
-import br.com.episteme.facilita.models.Questao;
-import br.com.episteme.facilita.models.TipoDeProva;
+import br.com.episteme.facilita.models.*;
 import br.com.episteme.facilita.repository.AlternativaRepository;
 import br.com.episteme.facilita.repository.QuestaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,15 +40,14 @@ public class ServiceSimulado {
         alternativaRepository.save(a);
     }
 
-    /*public Questao[] simuladoDiagnostico(TipoDeProva tipoDeProva) {
-        Questao[] simulado = new Questao[10];
+    public ArrayList<Questao> simuladoDiagnostico(String tipoDeProva) {
+        ArrayList<Questao> questoes = new ArrayList<>();
         List<Disciplina> disciplinas = Arrays.asList(Disciplina.values());
         for(Disciplina disciplina : disciplinas){
-            simulado[i] = questaoRepository.findQuestao(tipoDeProva, disciplina);
-            i++;
+            questoes.add(questaoRepository.findByDisciplinaAndTipoDeProva(disciplina.name(), tipoDeProva));
         }
-        return simulado;
-    }*/
+        return questoes;
+    }
 
 }
 

@@ -11,4 +11,7 @@ import org.springframework.stereotype.Repository;
 public interface CursoRepository extends JpaRepository<Curso, Long> {
     @Query("select x from Curso x where x.nome = :nome")
     public Curso findByNome(String nome);
+
+    @Query("select x from Curso x where x.tipoDeCurso = :tipoDeCurso")
+    public Curso findByTipoDeCurso(String tipoDeCurso);
 }

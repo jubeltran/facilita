@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simulado Inicial</title>
+</head>
+<body>
+<h1>Prova Escolhida: </h1>
+<!--/*@thymesVar id="tipoDeProva" type=""*/-->
+<h1 th:text="${tipoDeProva}"></h1>
+
+<form th:object="${simuladoDiagnostico}" action="/diagnostico" name="simuladoInicial" method="POST">
+    <div th:each="questao : ${simuladoDiagnostico}"></div>
+    <h1 th:text="${questao.getTexto()}"></h1>
+    <input name="tipo" th:each="alternativa : ${questao.getAlternativas()}" type="radio"/>
+    <label th:text="${alternativa.getTexto()} "></label>
+    </input>
+</form>
+</body>
+</html>
