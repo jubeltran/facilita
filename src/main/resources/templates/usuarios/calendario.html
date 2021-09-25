@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+  <style>
+    #fundo {
+      background-color: #e6f5f7;
+    }
+
+    :root {
+      --teal-050: #effcf6;
+      --teal-100: #c6f7e2;
+      --teal-200: #8eedc7;
+      --teal-300: #65d6ad;
+      --teal-400: #3ebd93;
+      --teal-500: #27ab83;
+      --teal-600: #199473;
+      --teal-700: #147d64;
+      --teal-800: #0c6b58;
+      --teal-900: #014d40;
+
+      --blue-grey-050: #f0f4f8;
+      --blue-grey-100: #d9e2ec;
+      --blue-grey-200: #bcccdc;
+      --blue-grey-300: #9fb3c8;
+      --blue-grey-400: #829ab1;
+      --blue-grey-500: #627d98;
+      --blue-grey-600: #486581;
+      --blue-grey-700: #334e68;
+      --blue-grey-800: #243b53;
+      --blue-grey-900: #102a43;
+    }
+
+    html {
+      font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+      font-size: 125%;
+      line-height: 1.4;
+      font-weight: 400;
+      color: var(--blue-grey-900);
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--blue-grey-100);
+    }
+
+    main {
+      max-width: max-content;
+      margin: 3em auto 0 auto;
+      padding: 1.5em;
+      background-color: #fff;
+      border: 2px solid var(--blue-grey-200);
+      border-radius: 8px;
+    }
+
+    .month-indicator {
+      color: var(--blue-grey-700);
+      text-align: center;
+      font-weight: 500;
+    }
+
+
+    .day-of-week,
+    .date-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+    }
+
+
+    .day-of-week {
+      margin-top: 1.25em;
+    }
+
+    .day-of-week>* {
+      font-size: 0.7em;
+      color: var(--blue-grey-400);
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      font-variant: small-caps;
+      text-align: center;
+    }
+
+    /* Dates */
+    .date-grid {
+      margin-top: 0.5em;
+    }
+
+    /* Positioning the first day
+.date-grid button:first-child {
+grid-column: 1;
+}*/
+
+
+    .date-grid button {
+      position: relative;
+      border: 0;
+      width: 4.5ch;
+      height: 4.5ch;
+      border-radius: 50%;
+      background-color: transparent;
+      color: var(--blue-grey-600);
+    }
+
+    .date-grid button:hover,
+    .date-grid button:focus {
+      outline: none;
+      background-color: var(--blue-grey-050);
+      color: var(--blue-grey-700);
+    }
+
+    .date-grid button:active,
+    .date-grid button.is-selected {
+      background-color: var(--teal-100);
+      color: var(--teal-900);
+    }
+  </style>
+  <title>Calendário</title>
+</head>
+
+<body id="fundo">
+<div th:replace="navbar :: menuNav"></div>
+
+<h1 style="text-align: center;">Calendário</h1>
+
+<div class="row align-items-start">
+  <div class="col">
+    <main>
+      <div class="calendar">
+        <div class="month-indicator">
+          <time datetime="2020-02"> Novembro 2020 </time>
+        </div>
+        <div class="day-of-week">
+          <div>Seg</div>
+          <div>Ter</div>
+          <div>Qua</div>
+          <div>Qui</div>
+          <div>Sex</div>
+          <div>Sab</div>
+          <div>Dom</div>
+        </div>
+        <div class="date-grid" style="grid-column: 1">
+          <button style="grid-column: 1">
+            <time datetime="2010-11-01">1</time>
+          </button>
+          <button>
+            <time datetime="2020-11-02">2</time>
+          </button>
+          <button>
+            <time datetime="2020-11-03">3</time>
+          </button>
+          <button>
+            <time datetime="2020-11-04">4</time>
+          </button>
+          <button>
+            <time datetime="2020-11-05">5</time>
+          </button>
+          <button>
+            <time datetime="2020-11-06">6</time>
+          </button>
+          <button style="background-color: #032870;">
+            <time datetime="2020-11-07" style="color: white;">7</time>
+          </button>
+          <button>
+            <time datetime="2020-11-08">8</time>
+          </button>
+          <button>
+            <time datetime="2020-11-09">9</time>
+          </button>
+          <button>
+            <time datetime="2020-11-10">10</time>
+          </button>
+          <button>
+            <time datetime="2020-11-11">11</time>
+          </button>
+          <button>
+            <time datetime="2020-11-12">12</time>
+          </button>
+          <button>
+            <time datetime="2020-11-13">13</time>
+          </button>
+          <button style="background-color: #032870;">
+            <time datetime="2020-11-14" style="color: white;">14</time>
+          </button>
+          <button>
+            <time datetime="2020-11-15">15</time>
+          </button>
+          <button>
+            <time datetime="2020-11-16">16</time>
+          </button>
+          <button>
+            <time datetime="2020-11-17">17</time>
+          </button>
+          <button>
+            <time datetime="2020-11-18">18</time>
+          </button>
+          <button>
+            <time datetime="2020-11-19">19</time>
+          </button>
+          <button>
+            <time datetime="2020-11-20">20</time>
+          </button>
+          <button style="background-color: #032870;">
+            <time datetime="2020-11-21" style="color: white;">21</time>
+          </button>
+          <button>
+            <time datetime="2020-11-22">22</time>
+          </button>
+          <button>
+            <time datetime="2020-11-23">23</time>
+          </button>
+          <button>
+            <time datetime="2020-11-24">24</time>
+          </button>
+          <button>
+            <time datetime="2020-11-25">25</time>
+          </button>
+          <button>
+            <time datetime="2020-11-26">26</time>
+          </button>
+          <button>
+            <time datetime="2020-11-27">27</time>
+          </button>
+          <button style="background-color: #032870;">
+            <time datetime="2020-11-28" style="color: white;">28</time>
+          </button>
+          <button>
+            <time datetime="2020-11-28">28</time>
+          </button>
+          <button>
+            <time datetime="2020-11-29">29</time>
+          </button>
+          <button>
+            <time datetime="2020-11-30">30</time>
+          </button>
+
+        </div>
+      </div>
+    </main>
+    <p style="text-align: center;">07 - Unicamp (1ºfase)</p>
+    <p style="text-align: center;">14 - Unesp (1ºfase biológicas)</p>
+    <p style="text-align: center;">14 - Unesp (1ºfase humanas e exatas)</p>
+    <p style="text-align: center;">21 - Enem (1ºdia)</p>
+    <p style="text-align: center;">28 - Enem (2ºdia)</p>
+
+
+  </div>
+  <div class="col">
+    <main>
+      <div class="calendar">
+        <div class="month-indicator">
+          <time datetime="2020-02"> Dezembro 2020 </time>
+        </div>
+        <div class="day-of-week">
+          <div>Seg</div>
+          <div>Ter</div>
+          <div>Qua</div>
+          <div>Qui</div>
+          <div>Sex</div>
+          <div>Sab</div>
+          <div>Dom</div>
+        </div>
+        <div class="date-grid">
+          <button style="grid-column: 3">
+            <time datetime="2010-12-01">1</time>
+          </button>
+          <button>
+            <time datetime="2020-12-02">2</time>
+          </button>
+          <button>
+            <time datetime="2020-12-03">3</time>
+          </button>
+          <button>
+            <time datetime="2020-12-04">4</time>
+          </button>
+          <button>
+            <time datetime="2020-12-05">5</time>
+          </button>
+          <button>
+            <time datetime="2020-12-06">6</time>
+          </button>
+          <button>
+            <time datetime="2020-12-07">7</time>
+          </button>
+          <button>
+            <time datetime="2020-12-08">8</time>
+          </button>
+          <button>
+            <time datetime="2020-12-09">9</time>
+          </button>
+          <button>
+            <time datetime="2020-12-10">10</time>
+          </button>
+          <button>
+            <time datetime="2020-12-11">11</time>
+          </button>
+          <button style="background-color: #032870;">
+            <time datetime="2020-12-12" style="color: white;">12</time>
+          </button>
+          <button>
+            <time datetime="2020-12-13">13</time>
+          </button>
+          <button>
+            <time datetime="2020-12-14">14</time>
+          </button>
+          <button>
+            <time datetime="2020-12-15">15</time>
+          </button>
+          <button>
+            <time datetime="2020-12-16">16</time>
+          </button>
+          <button>
+            <time datetime="2020-12-17">17</time>
+          </button>
+          <button>
+            <time datetime="2020-12-18">18</time>
+          </button>
+          <button>
+            <time datetime="2020-12-19">19</time>
+          </button>
+          <button>
+            <time datetime="2020-12-20">20</time>
+          </button>
+          <button>
+            <time datetime="2020-12-21">21</time>
+          </button>
+          <button>
+            <time datetime="2020-12-22">22</time>
+          </button>
+          <button>
+            <time datetime="2020-12-23">23</time>
+          </button>
+          <button>
+            <time datetime="2020-12-24">24</time>
+          </button>
+          <button>
+            <time datetime="2020-12-25">25</time>
+          </button>
+          <button>
+            <time datetime="2020-12-26">26</time>
+          </button>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+</body>
+</html>
