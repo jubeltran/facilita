@@ -79,7 +79,7 @@
 
                 <form action="/diagnostico">
                     <div class="form-check form-check-inline" th:each="tipo : ${tipos}">
-                        <input class="btn-check" name="tipo" th:field="*{tipoDeProva}" th:value="${tipo}" type="radio"/>
+                        <input class="btn-check" name="tipo" th:value="${tipo}" type="radio"/>
                         <label class="btn btn-outline-secondary rounded-pill" th:text="${tipo.name()} "></label>
                         </input>
                     </div>
