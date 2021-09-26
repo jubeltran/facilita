@@ -38,10 +38,19 @@ public class Curso {
     @Column(nullable = false)
     private Integer corteFuvest;
     @Column(nullable = false)
+    private Double corteUnicamp;
+    @Column(nullable = false)
+    private Integer corteVunesp;
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private TipoDeCurso tipoDeCurso;
 
-    public Curso(String nome, String descricao, String insta, String universidade1, String universidade2, String universidade3, Double corteSisu, Integer corteFuvest, TipoDeCurso tipoDeCurso) {
+    public Curso(String nome, String descricao, String insta, String universidade1, String universidade2, String universidade3, Double corteSisu, Integer corteFuvest, Integer corteUnicamp, Integer corteVunesp, TipoDeCurso tipoDeCurso){
+
+    }
+
+    public Curso(Long id, String nome, String descricao, String insta, String universidade1, String universidade2, String universidade3, Double corteSisu, Integer corteFuvest, Double corteUnicamp, Integer corteVunesp, TipoDeCurso tipoDeCurso) {
+        this.id = id;
         this.nome = nome;
         this.descricao = descricao;
         this.insta = insta;
@@ -50,10 +59,33 @@ public class Curso {
         this.universidade3 = universidade3;
         this.corteSisu = corteSisu;
         this.corteFuvest = corteFuvest;
+        this.corteUnicamp = corteUnicamp;
+        this.corteVunesp = corteVunesp;
         this.tipoDeCurso = tipoDeCurso;
     }
-    public Curso(){
 
+    public void setCorteSisu(Double corteSisu) {
+        this.corteSisu = corteSisu;
+    }
+
+    public void setCorteFuvest(Integer corteFuvest) {
+        this.corteFuvest = corteFuvest;
+    }
+
+    public Double getCorteUnicamp() {
+        return corteUnicamp;
+    }
+
+    public void setCorteUnicamp(Double corteUnicamp) {
+        this.corteUnicamp = corteUnicamp;
+    }
+
+    public Integer getCorteVunesp() {
+        return corteVunesp;
+    }
+
+    public void setCorteVunesp(Integer corteVunesp) {
+        this.corteVunesp = corteVunesp;
     }
 
     public Long getId() {

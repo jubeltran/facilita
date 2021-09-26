@@ -26,10 +26,14 @@ public class RequisicaoNovoCurso {
     private Double corteSisu;
     @NotNull
     private Integer corteFuvest;
+    @NotNull
+    private Integer corteUnicamp;
+    @NotNull
+    private Integer corteVunesp;
     @Enumerated(EnumType.STRING)
     private TipoDeCurso tipoDeCurso;
 
-    public RequisicaoNovoCurso(String nome, String descricao, String insta, String universidade1, String universidade2, String universidade3, Double corteSisu, Integer corteFuvest, TipoDeCurso tipoDeCurso){
+    public RequisicaoNovoCurso(String nome, String descricao, String insta, String universidade1, String universidade2, String universidade3, Double corteSisu, Integer corteFuvest, Integer corteUnicamp, Integer corteVunesp, TipoDeCurso tipoDeCurso) {
         this.nome = nome;
         this.descricao = descricao;
         this.insta = insta;
@@ -38,8 +42,11 @@ public class RequisicaoNovoCurso {
         this.universidade3 = universidade3;
         this.corteSisu = corteSisu;
         this.corteFuvest = corteFuvest;
+        this.corteUnicamp = corteUnicamp;
+        this.corteVunesp = corteVunesp;
         this.tipoDeCurso = tipoDeCurso;
     }
+
     public String getUniversidade1() {
         return universidade1;
     }
@@ -70,6 +77,14 @@ public class RequisicaoNovoCurso {
 
     public Integer getCorteFuvest() {
         return corteFuvest;
+    }
+
+    public Integer getCorteUnicamp() {
+        return corteUnicamp;
+    }
+
+    public Integer getCorteVunesp() {
+        return corteVunesp;
     }
 
     public TipoDeCurso getTipoDeCurso(){ return tipoDeCurso; }

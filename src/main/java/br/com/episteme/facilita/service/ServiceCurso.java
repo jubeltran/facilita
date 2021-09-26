@@ -26,6 +26,8 @@ public class ServiceCurso {
                 requisicaoNovoCurso.getUniversidade3(),
                 requisicaoNovoCurso.getCorteSisu(),
                 requisicaoNovoCurso.getCorteFuvest(),
+                requisicaoNovoCurso.getCorteUnicamp(),
+                requisicaoNovoCurso.getCorteVunesp(),
                 requisicaoNovoCurso.getTipoDeCurso()
                 );
         cursoRepository.save(curso);
