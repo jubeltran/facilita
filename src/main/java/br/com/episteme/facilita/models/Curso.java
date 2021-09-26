@@ -38,19 +38,14 @@ public class Curso {
     @Column(nullable = false)
     private Integer corteFuvest;
     @Column(nullable = false)
-    private Double corteUnicamp;
+    private Integer corteUnicamp;
     @Column(nullable = false)
     private Integer corteVunesp;
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private TipoDeCurso tipoDeCurso;
 
-    public Curso(String nome, String descricao, String insta, String universidade1, String universidade2, String universidade3, Double corteSisu, Integer corteFuvest, Integer corteUnicamp, Integer corteVunesp, TipoDeCurso tipoDeCurso){
-
-    }
-
-    public Curso(Long id, String nome, String descricao, String insta, String universidade1, String universidade2, String universidade3, Double corteSisu, Integer corteFuvest, Double corteUnicamp, Integer corteVunesp, TipoDeCurso tipoDeCurso) {
-        this.id = id;
+    public Curso(String nome, String descricao, String insta, String universidade1, String universidade2, String universidade3, Double corteSisu, Integer corteFuvest, Integer corteUnicamp, Integer corteVunesp, TipoDeCurso tipoDeCurso) {
         this.nome = nome;
         this.descricao = descricao;
         this.insta = insta;
@@ -64,6 +59,10 @@ public class Curso {
         this.tipoDeCurso = tipoDeCurso;
     }
 
+    public Curso() {
+
+    }
+
     public void setCorteSisu(Double corteSisu) {
         this.corteSisu = corteSisu;
     }
@@ -72,11 +71,11 @@ public class Curso {
         this.corteFuvest = corteFuvest;
     }
 
-    public Double getCorteUnicamp() {
+    public Integer getCorteUnicamp() {
         return corteUnicamp;
     }
 
-    public void setCorteUnicamp(Double corteUnicamp) {
+    public void setCorteUnicamp(Integer corteUnicamp) {
         this.corteUnicamp = corteUnicamp;
     }
 
