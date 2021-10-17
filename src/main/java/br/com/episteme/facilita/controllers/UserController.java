@@ -5,6 +5,7 @@ import br.com.episteme.facilita.models.Disciplina;
 import br.com.episteme.facilita.models.TipoDeProva;
 import br.com.episteme.facilita.models.User;
 import br.com.episteme.facilita.repository.UserRepository;
+
 import br.com.episteme.facilita.service.ServiceUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -15,6 +16,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.mail.MessagingException;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;

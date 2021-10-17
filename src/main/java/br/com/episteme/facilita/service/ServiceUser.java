@@ -5,6 +5,7 @@ import br.com.episteme.facilita.models.AppUserRole;
 import br.com.episteme.facilita.models.User;
 import br.com.episteme.facilita.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -12,6 +13,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.mail.MessagingException;
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -70,4 +73,5 @@ public class ServiceUser implements UserDetailsService {
             userRepository.save(user);
         }
     }
+
 }

@@ -17,6 +17,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -37,8 +38,31 @@ public class CursoController {
         return mv;
     }
 
-    @GetMapping("curso/{nome}")
-    public ModelAndView pagCurso(@PathVariable("nome") String nome, @AuthenticationPrincipal User usuario) {
+    @GetMapping("/geral/biologicas")
+    public ModelAndView bio() {
+        List<Curso> cursos = cursoRepository.findByTipoDeCurso(TipoDeCurso.Biológicas);
+        ModelAndView mv = new ModelAndView("usuarios/biologicas");
+        mv.addObject("cursos", cursos);
+        return mv;
+    }
+
+    @GetMapping("/geral/exatas")
+    public ModelAndView exatas() {
+        List<Curso> cursos = cursoRepository.findByTipoDeCurso(TipoDeCurso.Exatas);
+        ModelAndView mv = new ModelAndView("usuarios/exatas");
+        mv.addObject("cursos", cursos);
+        return mv;
+    }
+
+    @GetMapping("/geral/humanas")
+    public ModelAndView humanas() {
+        List<Curso> cursos = cursoRepository.findByTipoDeCurso(TipoDeCurso.Humanas);
+        ModelAndView mv = new ModelAndView("usuarios/humanas");
+        mv.addObject("cursos", cursos);
+        return mv;
+    }
+    @GetMapping("/curso/{nome}")
+    public ModelAndView pagCurso(@PathVariable String nome, @AuthenticationPrincipal User usuario) {
         ModelAndView mv = new ModelAndView("usuarios/curso");
         Curso curso = cursoRepository.findByNome(nome);
         mv.addObject("curso", curso);

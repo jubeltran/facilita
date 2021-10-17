@@ -49,13 +49,22 @@ public class User implements UserDetails {
         this.nome = nome;
         this.senha = senha;
         this.appUserRole = appUserRole;
+        this.foco = foco;
     }
 
-    public User(String nome, String email, String senha, AppUserRole appUserRole) {
+    public User(String nome, String email, String senha, AppUserRole appUserRole, TipoDeProva foco) {
         this.email = email;
         this.nome = nome;
         this.senha = senha;
         this.appUserRole = appUserRole;
+        this.foco = foco;
+    }
+
+    public User(String email) {
+        this.email = email;
+    }
+
+    public User(String nome, String email, String senha, AppUserRole admin) {
     }
 
 
@@ -121,25 +130,11 @@ public class User implements UserDetails {
         return fav1;
     }
 
-    public void setFav1(String fav1) {
-        this.fav1 = fav1;
-    }
+    public void setFav1(String fav1) { this.fav1 = fav1; }
 
-    public String getFav2() {
-        return fav2;
-    }
-
-    public void setFav2(String fav2) {
-        this.fav2 = fav2;
-    }
-
-    public String getFav3() {
-        return fav3;
-    }
-
-    public void setFav3(String fav3) {
-        this.fav3 = fav3;
-    }
+    public TipoDeProva getFoco(){ return foco; }
+    
+    
 }
 
 

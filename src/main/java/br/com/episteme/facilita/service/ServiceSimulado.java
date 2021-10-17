@@ -46,7 +46,7 @@ public class ServiceSimulado {
                 requisicaoNovaAlternativa.isCerta(),
                 requisicaoNovaAlternativa.getTexto(),
                 questaoOptional.get()
-                );
+        );
         alternativaRepository.save(a);
     }
 

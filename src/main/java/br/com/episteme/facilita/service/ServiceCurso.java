@@ -34,14 +34,8 @@ public class ServiceCurso {
     }
 
     public void addFavorito(User usuario, String fav){
-        if(usuario.getFav1().equals(null)){
+        if(usuario.getFav1().equals(null)) {
             usuario.setFav1(fav);
-        }
-        else if(usuario.getFav2().equals(null)){
-            usuario.setFav2(fav);
-        }
-        else{
-            usuario.setFav3(fav);
         }
     }
 }
