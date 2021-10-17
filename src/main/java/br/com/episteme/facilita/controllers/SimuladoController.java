@@ -1,22 +1,24 @@
 package br.com.episteme.facilita.controllers;
 import br.com.episteme.facilita.dto.RequisicaoNovaAlternativa;
 import br.com.episteme.facilita.dto.RequisicaoNovaQuestao;
-import br.com.episteme.facilita.models.Disciplina;
-import br.com.episteme.facilita.models.Questao;
-import br.com.episteme.facilita.models.TipoDeProva;
-import br.com.episteme.facilita.models.User;
+import br.com.episteme.facilita.dto.RequisicaoNovaResposta;
+import br.com.episteme.facilita.dto.RequisicaoNovoGabarito;
+import br.com.episteme.facilita.models.*;
 import br.com.episteme.facilita.repository.QuestaoRepository;
 import br.com.episteme.facilita.service.ServiceSimulado;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @Controller
@@ -27,6 +29,8 @@ public class SimuladoController {
 
     @Autowired
     private ServiceSimulado serviceSimulado;
+
+    private List<Resposta> respostas = null;
 
     @GetMapping("/cadquestao")
     @PreAuthorize("hasAuthority('ADMIN')")
@@ -75,16 +79,36 @@ public class SimuladoController {
         return mv;
     }
 
-    @GetMapping("/diagnostico")
-    public ModelAndView simuladoDiagnostico(TipoDeProva tipoDeProva){
+    @PostMapping("/diagnostico")
+    public ModelAndView simuladoInicial(@RequestParam TipoDeProva tipoDeProva) {
         ModelAndView mv = new ModelAndView("usuarios/diagnostico");
+        Simulado simuladoDiagnostico = serviceSimulado.simuladoDiagnostico(tipoDeProva);
+        ArrayList<Questao> questoes = new ArrayList<>(simuladoDiagnostico.getQuestoes());
+        mv.addObject("questoes", questoes);
         return mv;
     }
 
-    @PostMapping("/diagnostico")
-    public ModelAndView simuladoInicial(TipoDeProva tipoDeProva) {
+    @PostMapping("/salvarRespostaDiagnostico")
+    public ModelAndView salvarRespostasDiagnostico(@RequestParam HashMap<Integer, Integer> solutions, @AuthenticationPrincipal User usuario, Integer simuladoId){
         ModelAndView mv = new ModelAndView("usuarios/diagnostico");
-        mv.addObject("simuladoDiagnostico", serviceSimulado.simuladoDiagnostico(tipoDeProva.name()));
+        System.out.println(solutions);
+        System.out.println(simuladoId);
+        //serviceSimulado.salvarRespostasDiagnostico(solutions, usuario, simuladoId);
+        return mv;
+    }
+
+    @PostMapping("/sugeridos")
+    public ModelAndView sugerirSimulados(@AuthenticationPrincipal User usuario){
+        serviceSimulado.identificarDificuldades(usuario);
+        ModelAndView mv = new ModelAndView("usuarios/sugeridos");
+        return mv;
+    }
+
+    @GetMapping("/{id}/deletarQuestao")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ModelAndView deletarQuestao(@PathVariable Long id){
+        ModelAndView mv = new ModelAndView("redirect:/questoes");
+        this.questaoRepository.deleteById(id);
         return mv;
     }
 }

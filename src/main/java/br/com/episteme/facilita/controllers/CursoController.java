@@ -83,4 +83,13 @@ public class CursoController {
         return mv;
     }
 
+    @GetMapping("/{id}/deletarCurso")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ModelAndView deletarCurso(@PathVariable Long id){
+        ModelAndView mv = new ModelAndView("redirect:/cursos");
+        this.cursoRepository.deleteById(id);
+        return mv;
+    }
+
+
 }

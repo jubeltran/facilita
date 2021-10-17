@@ -27,7 +27,7 @@
 
 <br>
 <br>
-<h2 style="text-align: center;">CURSOS</h2>
+<h2 style="text-align: center;">Cursos</h2>
 
 <div class="mx-auto" style="width: 420px;">
 
@@ -52,27 +52,32 @@
   <div class="row align-items-start">
     <div class="col">
       <div class="x">
-        <button id="b" class="bt">
+        <form action="/geral/biologicas">
+        <button type=submit id="b" class="bt">
           <img id="bio" class="img" th:src="@{images/biologicas.png}" style="width:100%">
-            <h4 class="titulo" style="text-align:center">Biológicas</h4>
+          <h4 class="titulo" style="text-align:center">Biológicas</h4>
         </button>
-
+        </form>
       </div>
     </div>
     <div class="col">
       <div class="x">
+        <form action="/geral/exatas">
         <button id="bt" class="bt">
           <img id="exatas" class="img" th:src="@{images/exatas.png}" style="width:100%">
           <h4 class="titulo" style="text-align:center">Exatas</h4>
         </button>
+        </form>
       </div>
     </div>
     <div class="col">
       <div class="x">
+        <form action="/geral/humanas">
         <button id="humanas" class="bt">
           <img id="img" class="img" th:src="@{images/humanas.png}" style="width:100%">
           <h4 class="titulo" style="text-align:center">Humanas</h4>
         </button>
+        </form>
       </div>
     </div>
   </div>

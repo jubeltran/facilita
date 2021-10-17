@@ -34,6 +34,7 @@
                 <td class="col-2" th:text="${curso.getInsta()}">Instagram</td>
                 <td class="col-2" th:text="${curso.getUniversidade1()}">Universidade</td>
                 <td class="col-2" th:text="${curso.getCorteFuvest()}">Nota de Corte</td>
+                <td class="col-1"><a th:href="@{/{cursoId}/deletarCurso(cursoId = ${curso.id})}">Deletar</a></td>
             </tr>
             </tbody>
         </table>

@@ -1,0 +1,43 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" th:lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Desempenho</title>
+</head>
+
+<style>
+    .conteudo{
+        background:	#D3D3D3;
+        position: relative;
+        margin:80px ;
+        width: 500;
+        color:black;
+        line-height:30px;
+        height:300px;
+        font-size: 16px;
+        font-weight:500;
+        text-transform: uppercase;
+        float:right;
+    }
+</style>
+
+<body>
+<h2>Parabéns você concluiu a primeira etapa!</h2>
+<h3>Aqui está o seu número de acertos: 60/90</h3>
+<a>Vamos seguir essa jornada juntos?</a>
+<br>
+<br><h3 style="border: solid;" >
+    <img th:src="@{images/grafico.png}" style="text-align: left; margin: 60px; width: 500; height:300px; filter: blur(2px);
+        ">
+    <div class="conteudo">
+        <h4 style="text-align:center">Para ter acesso às análises de desempenho organizadas por disciplina e incidência no vestibular, <button class="btn btn-light btn btn-outline-dark" type="submit">Cadastre-se grátis</button></h4>
+        <img th:src="@{images/cadeado.png}" style=" width: 70; margin:50; display: block; margin-left: auto; margin-right: auto">
+
+    </div>
+</h3>
+
+
+</body>
+</html>

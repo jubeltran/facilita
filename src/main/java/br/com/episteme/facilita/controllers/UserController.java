@@ -43,7 +43,7 @@ public class UserController {
         return mv;
     }
 
-    @GetMapping("/admin/usuarios")
+    @GetMapping("/usuarios")
     @PreAuthorize("hasAuthority('ADMIN')")
     public ModelAndView lista() {
         List<User> usuarios = userRepository.findAll();
@@ -78,6 +78,18 @@ public class UserController {
         return mv;
     }
 
+    @GetMapping("/sugeridos")
+    public ModelAndView sugerirSimulado(){
+        ModelAndView mv = new ModelAndView("usuarios/sugeridos");
+        return mv;
+    }
+
+    @GetMapping("/calendario")
+    public ModelAndView mostrarCalendario(){
+        ModelAndView mv = new ModelAndView("usuarios/calendario");
+        return mv;
+    }
+
     @PostMapping("/salvarUsuario")
     public ModelAndView create(@Valid RequisicaoNovoUser requisicao, BindingResult br) throws Exception {
         System.out.println(requisicao);
@@ -98,7 +110,7 @@ public class UserController {
     @GetMapping("/{id}/delete")
     @PreAuthorize("hasAuthority('ADMIN')")
     public ModelAndView deletarUsuario(@PathVariable Long id){
-        ModelAndView mv = new ModelAndView("redirect:/admin/usuarios");
+        ModelAndView mv = new ModelAndView("redirect:/usuarios");
         this.userRepository.deleteById(id);
         return mv;
     }

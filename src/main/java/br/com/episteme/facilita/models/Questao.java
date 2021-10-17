@@ -19,7 +19,7 @@ public class Questao {
     private Long id;
     @Column(nullable = false) @NotBlank @Size(max = 10000)
     private String texto;
-    @Column
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Disciplina disciplina;
     @Column

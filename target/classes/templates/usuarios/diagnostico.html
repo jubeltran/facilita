@@ -3,9 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Simulado Inicial</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 </head>
 <body>
-<h1>Prova Escolhida: </h1>
-<h1 th:text="${tipoDeProva}"></h1>
+<form action="/salvarRespostaDiagnostico" name="simuladoInicial" method="POST">
+    <div th:each="questao : ${questoes}">
+        <h1 th:text="${questao.getTexto()}"></h1>
+            <div th:each="alternativa : ${questao.getAlternativas()}">
+                <input th:name="${questao.getId()}" type="radio" th:value="${alternativa.getId()}"/>
+                <label th:text="${alternativa.getTexto()}"></label>
+            </div>
+        </div>
+    <input hidden th:value="${simuladoDiagnostico.getId()}">
+    <button type="submit" class="btn btn-primary">Enviar Respostas</button>
+</form>
 </body>
 </html>

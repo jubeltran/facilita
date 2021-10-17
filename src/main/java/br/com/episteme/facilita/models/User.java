@@ -11,17 +11,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Builder
 @Table(name="\"user\"")
 
 public class User implements UserDetails {
@@ -44,10 +40,9 @@ public class User implements UserDetails {
     private AppUserRole appUserRole;
     @Column
     private String fav1 = null;
-    @Column
-    private String fav2 = null;
-    @Column
-    private String fav3 = null;
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Gabarito> gabaritos;
+    private TipoDeProva foco;
 
     public User(User user) {
         this.email = email;
@@ -98,6 +93,10 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public boolean jaRealizouDiagnostico() {
+        return false;
     }
 
     public Long getId() {
