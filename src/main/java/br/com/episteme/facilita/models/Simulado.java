@@ -22,7 +22,7 @@ public class Simulado {
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private LocalDateTime data;
 
-    public Simulado(List<Questao> questoes){
+    public Simulado(Long id, List<Questao> questoes){
         this.id = id;
         this.questoes = questoes;
         this.data = LocalDateTime.now();

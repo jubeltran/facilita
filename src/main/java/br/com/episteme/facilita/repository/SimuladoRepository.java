@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 public interface SimuladoRepository extends JpaRepository<Simulado, Long> {
     @Query("select x from Simulado x where x.id = :id")
-    Simulado getById(Integer id);
+    Simulado getById(Long id);
 }

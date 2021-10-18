@@ -15,10 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 @Controller
@@ -80,26 +77,28 @@ public class SimuladoController {
     }
 
     @PostMapping("/diagnostico")
-    public ModelAndView simuladoInicial(@RequestParam TipoDeProva tipoDeProva) {
+    public ModelAndView simuladoInicial(@RequestParam TipoDeProva tipoDeProva, @AuthenticationPrincipal User usuario) {
         ModelAndView mv = new ModelAndView("usuarios/diagnostico");
-        Simulado simuladoDiagnostico = serviceSimulado.simuladoDiagnostico(tipoDeProva);
+        Simulado simuladoDiagnostico = serviceSimulado.simuladoDiagnostico(tipoDeProva, usuario);
         ArrayList<Questao> questoes = new ArrayList<>(simuladoDiagnostico.getQuestoes());
         mv.addObject("questoes", questoes);
+        mv.addObject("simuladoId", simuladoDiagnostico.getId());
         return mv;
     }
 
     @PostMapping("/salvarRespostaDiagnostico")
-    public ModelAndView salvarRespostasDiagnostico(@RequestParam HashMap<Integer, Integer> solutions, @AuthenticationPrincipal User usuario, Integer simuladoId){
+    public ModelAndView salvarRespostasDiagnostico(@RequestParam HashMap<String, String> solutions, @AuthenticationPrincipal User usuario){
         ModelAndView mv = new ModelAndView("usuarios/diagnostico");
-        System.out.println(solutions);
-        System.out.println(simuladoId);
-        //serviceSimulado.salvarRespostasDiagnostico(solutions, usuario, simuladoId);
+        RequisicaoNovaResposta requisicaoNovaResposta = new RequisicaoNovaResposta(solutions);
+        Gabarito gab = serviceSimulado.salvarRespostasDiagnostico(requisicaoNovaResposta, usuario, 1L);
+        List<Disciplina> dificuldades = serviceSimulado.identificarDificuldades(usuario, gab);
+        mv.addObject("dificuldades", dificuldades);
         return mv;
     }
 
     @PostMapping("/sugeridos")
     public ModelAndView sugerirSimulados(@AuthenticationPrincipal User usuario){
-        serviceSimulado.identificarDificuldades(usuario);
+        //serviceSimulado.identificarDificuldades(usuario);
         ModelAndView mv = new ModelAndView("usuarios/sugeridos");
         return mv;
     }

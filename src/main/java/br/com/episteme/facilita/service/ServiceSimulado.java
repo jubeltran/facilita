@@ -50,44 +50,41 @@ public class ServiceSimulado {
         alternativaRepository.save(a);
     }
 
-    public Simulado simuladoDiagnostico(TipoDeProva tipoDeProva) {
+    public Simulado simuladoDiagnostico(TipoDeProva tipoDeProva, User usuario) {
         List<Disciplina> disciplinas = Arrays.asList(Disciplina.values());
         ArrayList<Questao> selecionadas = new ArrayList<>();
-        List<Questao> todas = questaoRepository.findByDisciplinaAndTipoDeProva(Disciplina.Biologia, tipoDeProva);
-        selecionadas.add(todas.get(0));
-        selecionadas.add(todas.get(1));
-        /*for (Disciplina disciplina : disciplinas) {
+        for (Disciplina disciplina : disciplinas) {
             List<Questao> todas = questaoRepository.findByDisciplinaAndTipoDeProva(disciplina, tipoDeProva);
             selecionadas.add(todas.get(0));
             selecionadas.add(todas.get(1));
-        }*/
-        Simulado simuladoDiagnostico = new Simulado(selecionadas);
+        }
+        Simulado simuladoDiagnostico = new Simulado(1L, selecionadas);
         simuladoRepository.save(simuladoDiagnostico);
+        //usuario.setJaRealizouDiagnostico(true);
         return simuladoDiagnostico;
     }
 
-    public void salvarRespostasDiagnostico(HashMap<Integer, Integer> solutions, User usuario, Integer simuladoId){
-        Set<Integer> chaves = solutions.keySet();
+    public Gabarito salvarRespostasDiagnostico(RequisicaoNovaResposta requisicaoNovaResposta, User usuario, Long simuladoId){
+        Set<String> chaves = requisicaoNovaResposta.getSolution().keySet();
         ArrayList<Resposta> respostas = new ArrayList<>();
-        Simulado simulado = simuladoRepository.getById(simuladoId);
-        for (Integer chave : chaves) {
-            Questao q = questaoRepository.getById(chave);
-            Alternativa a = alternativaRepository.findByQuestaoAndId(chave, chave.intValue());
+        Simulado simulado = simuladoRepository.getById(simuladoId.longValue());
+        for (String chave : chaves) {
+            Questao q = questaoRepository.getById(Long.valueOf(chave));
+            Alternativa a = alternativaRepository.getById(Long.valueOf(requisicaoNovaResposta.getSolution().get(chave)));
             Resposta r = new Resposta(a, q);
             respostas.add(r);
             respostaRepository.save(r);
         }
-        Gabarito gabarito = new Gabarito(simulado, respostas, usuario);
-        gabaritoRepository.save(gabarito);
+        Gabarito gab = new Gabarito(simulado, respostas, usuario);
+        gabaritoRepository.save(gab);
+        return gab;
     }
 
-    public List<Disciplina> identificarDificuldades(User usuario){
-        Optional<Simulado> simuladoDiagnostico = simuladoRepository.findById(1L);
-        Gabarito gabarito = gabaritoRepository.findBySimuladoAndUser(simuladoDiagnostico, usuario);
+    public List<Disciplina> identificarDificuldades(User usuario, Gabarito gab){
         List<Disciplina> disciplinas = Arrays.asList(Disciplina.values());
         ArrayList<Disciplina> dificuldades = new ArrayList<>();
         for(Disciplina d : disciplinas){
-            if(gabarito.contarErros(d) > gabarito.contarAcertos(d)){
+            if(gab.contarErros(d) > gab.contarAcertos(d)){
                 dificuldades.add(d);
             }
         }

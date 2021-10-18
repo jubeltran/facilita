@@ -24,6 +24,6 @@ public interface QuestaoRepository extends JpaRepository<Questao, Long> {
     public List<Questao> findByDisciplinaAndTipoDeProva(Disciplina disciplina, TipoDeProva tipoDeProva);
 
     @Query("select x from Questao x where x.id = :idquestao")
-    public Questao getById(Integer idquestao);
+    public Questao getById(Long idquestao);
 
 }

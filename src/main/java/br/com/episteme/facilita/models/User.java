@@ -124,8 +124,38 @@ public class User implements UserDetails {
     public void setFav1(String fav1) { this.fav1 = fav1; }
 
     public TipoDeProva getFoco(){ return foco; }
-    
-    
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public AppUserRole getAppUserRole() {
+        return appUserRole;
+    }
+
+    public void setAppUserRole(AppUserRole appUserRole) {
+        this.appUserRole = appUserRole;
+    }
+
+    public List<Gabarito> getGabaritos() {
+        return gabaritos;
+    }
+
+    public void setGabaritos(List<Gabarito> gabaritos) {
+        this.gabaritos = gabaritos;
+    }
+
+    public void setFoco(TipoDeProva foco) {
+        this.foco = foco;
+    }
+
+    public boolean isJaRealizouDiagnostico() {
+        return jaRealizouDiagnostico;
+    }
+
+    public void setJaRealizouDiagnostico(boolean jaRealizouDiagnostico) {
+        this.jaRealizouDiagnostico = jaRealizouDiagnostico;
+    }
 }
 
 

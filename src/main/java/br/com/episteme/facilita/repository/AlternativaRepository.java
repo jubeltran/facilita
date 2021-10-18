@@ -14,6 +14,6 @@ import java.util.List;
 @Repository
 public interface AlternativaRepository extends JpaRepository<Alternativa, Long>{
 
-    @Query("select x from Alternativa x where x.questao = :idquestao AND x.id = :escolhida")
-    Alternativa findByQuestaoAndId(Integer idquestao, Integer escolhida);
+    @Query("select x from Alternativa x where x.id = :id")
+    Alternativa getById(Long id);
 }
