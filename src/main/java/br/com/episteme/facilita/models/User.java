@@ -43,6 +43,7 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Gabarito> gabaritos;
     private TipoDeProva foco;
+    private boolean jaRealizouDiagnostico;
 
     public User(User user) {
         this.email = email;
@@ -96,10 +97,6 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
-    }
-
-    public boolean jaRealizouDiagnostico() {
-        return false;
     }
 
     public Long getId() {
