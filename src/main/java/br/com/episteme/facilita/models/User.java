@@ -39,7 +39,7 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private AppUserRole appUserRole;
     @Column
-    private String fav1 = null;
+    private String fav1;
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Gabarito> gabaritos;
     private TipoDeProva foco;
