@@ -49,15 +49,13 @@ public class User implements UserDetails {
         this.nome = nome;
         this.senha = senha;
         this.appUserRole = appUserRole;
-        this.foco = foco;
     }
 
-    public User(String nome, String email, String senha, AppUserRole appUserRole, TipoDeProva foco) {
+    public User(String nome, String email, String senha, AppUserRole appUserRole) {
         this.email = email;
         this.nome = nome;
         this.senha = senha;
         this.appUserRole = appUserRole;
-        this.foco = foco;
     }
 
     public User(String email) {
