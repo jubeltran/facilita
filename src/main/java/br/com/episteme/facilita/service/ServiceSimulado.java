@@ -60,7 +60,7 @@ public class ServiceSimulado {
         }
         Simulado simuladoDiagnostico = new Simulado(1L, selecionadas);
         simuladoRepository.save(simuladoDiagnostico);
-        //usuario.setJaRealizouDiagnostico(true);
+        usuario.setJaRealizouDiagnostico(true);
         return simuladoDiagnostico;
     }
 
@@ -80,7 +80,7 @@ public class ServiceSimulado {
         return gab;
     }
 
-    public List<Disciplina> identificarDificuldades(User usuario, Gabarito gab){
+    public List<Disciplina> identificarDificuldades(Gabarito gab){
         List<Disciplina> disciplinas = Arrays.asList(Disciplina.values());
         ArrayList<Disciplina> dificuldades = new ArrayList<>();
         for(Disciplina d : disciplinas){
@@ -90,23 +90,23 @@ public class ServiceSimulado {
         }
         return dificuldades;
     }
+
+    public ArrayList<Simulado> gerarSimuladoSugerido(List<Disciplina> dificuldades, User usuario){
+        ArrayList<Questao> selecionadas = new ArrayList<>();
+        ArrayList<Simulado> simulados = new ArrayList<>();
+        TipoDeProva tipoDeProva = usuario.getFoco();
+        for(Disciplina d : dificuldades){
+            List<Questao> todas = questaoRepository.findByDisciplinaAndTipoDeProva(d, tipoDeProva);
+            Collections.shuffle(todas);
+            selecionadas.add(todas.get(0));
+            selecionadas.add(todas.get(1));
+            Simulado simulado = new Simulado(selecionadas, usuario);
+            simulados.add(simulado);
+        }
+        return simulados;
+    }
 }
 
-//Gabi
-  /*  public Simulado simuladoSugerido(User usuario) {
-        List<Disciplina> disciplinas = Arrays.asList(Disciplina.values());
-        ArrayList<Resposta> erradas = new ArrayList<>();
-        for (Disciplina disciplina : disciplinas) {
-            List<Resposta> selecionadas = questaoRepository.findByDisciplinaAndTipoDeProva(disciplina, usuario.getFoco());
-            erradas.add(erradas.get(0));
-        }
-        Simulado simuladoSugerido = new Simulado(erradas, usuario);
-        simuladoRepository.save(simuladoSugerido);
-        return simuladoSugerido;
-    } */
 
-
-    //Resposta - p uma questao, alternativa
-    //Gabarito - um simulado, um usuario, uma data, list de respostas
 
 

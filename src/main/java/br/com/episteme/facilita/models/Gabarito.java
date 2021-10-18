@@ -56,12 +56,22 @@ public class Gabarito {
         return user;
     }
 
+    public Integer contarTotalAcertos(){
+        int acertos = 0;
+        for(Resposta r : getRespostas()){
+            if(r.getAlternativa().isCerta()){
+                acertos = acertos + 1;
+            }
+        }
+        return acertos;
+    }
+
     public int contarErros(Disciplina disciplina){
         int erros = 0;
         for(Resposta resposta : getRespostas()){
             if(resposta.getAlternativa().getQuestao().getDisciplina().equals(disciplina)){
                 if(!resposta.getAlternativa().isCerta()) {
-                    erros += erros;
+                    erros = erros + 1;
                 }
             }
         }
@@ -73,7 +83,7 @@ public class Gabarito {
         for(Resposta resposta : getRespostas()){
             if(resposta.getAlternativa().getQuestao().getDisciplina().equals(disciplina)){
                 if(!resposta.getAlternativa().isCerta()) {
-                    acertos += acertos;
+                    acertos = acertos + 1;
                 }
             }
         }

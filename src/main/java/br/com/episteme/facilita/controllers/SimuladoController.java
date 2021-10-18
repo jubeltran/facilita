@@ -5,12 +5,14 @@ import br.com.episteme.facilita.dto.RequisicaoNovaResposta;
 import br.com.episteme.facilita.dto.RequisicaoNovoGabarito;
 import br.com.episteme.facilita.models.*;
 import br.com.episteme.facilita.repository.QuestaoRepository;
+import br.com.episteme.facilita.repository.SimuladoRepository;
 import br.com.episteme.facilita.service.ServiceSimulado;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -23,6 +25,9 @@ public class SimuladoController {
 
     @Autowired
     private QuestaoRepository questaoRepository;
+
+    @Autowired
+    private SimuladoRepository simuladoRepository;
 
     @Autowired
     private ServiceSimulado serviceSimulado;
@@ -81,6 +86,7 @@ public class SimuladoController {
         ModelAndView mv = new ModelAndView("usuarios/diagnostico");
         Simulado simuladoDiagnostico = serviceSimulado.simuladoDiagnostico(tipoDeProva, usuario);
         ArrayList<Questao> questoes = new ArrayList<>(simuladoDiagnostico.getQuestoes());
+        usuario.setFoco(tipoDeProva);
         mv.addObject("questoes", questoes);
         mv.addObject("simuladoId", simuladoDiagnostico.getId());
         return mv;
@@ -91,17 +97,23 @@ public class SimuladoController {
         ModelAndView mv = new ModelAndView("usuarios/diagnostico");
         RequisicaoNovaResposta requisicaoNovaResposta = new RequisicaoNovaResposta(solutions);
         Gabarito gab = serviceSimulado.salvarRespostasDiagnostico(requisicaoNovaResposta, usuario, 1L);
-        List<Disciplina> dificuldades = serviceSimulado.identificarDificuldades(usuario, gab);
+        Integer acertos = gab.contarTotalAcertos();
+        List<Disciplina> dificuldades = serviceSimulado.identificarDificuldades(gab);
+        List<Simulado> simulados = serviceSimulado.gerarSimuladoSugerido(dificuldades, usuario);
+        mv.setViewName("usuarios/sugeridos");
+        mv.addObject("acertos", acertos);
         mv.addObject("dificuldades", dificuldades);
+        mv.addObject("simulados", simulados);
         return mv;
     }
 
-    @PostMapping("/sugeridos")
-    public ModelAndView sugerirSimulados(@AuthenticationPrincipal User usuario){
-        //serviceSimulado.identificarDificuldades(usuario);
-        ModelAndView mv = new ModelAndView("usuarios/sugeridos");
-        return mv;
-    }
+//    @PostMapping("/sugerido/{simuladoId}")
+//    public ModelAndView acessarSimulado(@PathVariable Long simuladoId){
+//        ModelAndView mv = new ModelAndView("usuarios/simulado");
+//        Simulado simulado =
+//        mv.addObject()
+//    }
+
 
     @GetMapping("/{id}/deletarQuestao")
     @PreAuthorize("hasAuthority('ADMIN')")
