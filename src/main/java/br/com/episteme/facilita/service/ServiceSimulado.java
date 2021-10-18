@@ -56,7 +56,6 @@ public class ServiceSimulado {
         for (Disciplina disciplina : disciplinas) {
             List<Questao> todas = questaoRepository.findByDisciplinaAndTipoDeProva(disciplina, tipoDeProva);
             selecionadas.add(todas.get(0));
-            selecionadas.add(todas.get(1));
         }
         Simulado simuladoDiagnostico = new Simulado(1L, selecionadas);
         simuladoRepository.save(simuladoDiagnostico);

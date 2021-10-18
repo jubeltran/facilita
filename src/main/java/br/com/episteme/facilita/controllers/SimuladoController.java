@@ -115,7 +115,7 @@ public class SimuladoController {
 //    }
 
 
-    @GetMapping("/{id}/deletarQuestao")
+    @GetMapping("/{id}/delete")
     @PreAuthorize("hasAuthority('ADMIN')")
     public ModelAndView deletarQuestao(@PathVariable Long id){
         ModelAndView mv = new ModelAndView("redirect:/questoes");
