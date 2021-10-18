@@ -51,8 +51,6 @@
 <br>
 
 <div class="container" th:each="curso : ${cursos}">
-    <div class="row align-items-start">
-        <div class="col">
             <div class="x">
                 <form th:action="@{/curso/{nome}(nome = ${curso.getNome()})}">
                     <button id="b" class="bt">
@@ -61,6 +59,6 @@
                     </button>
                 </form>
             </div>
-        </div>
+    </div>
 </body>
 </html>
