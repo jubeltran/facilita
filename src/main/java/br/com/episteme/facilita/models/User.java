@@ -62,10 +62,6 @@ public class User implements UserDetails {
         this.email = email;
     }
 
-    public User(String nome, String email, String senha, AppUserRole admin) {
-    }
-
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         SimpleGrantedAuthority authority =
