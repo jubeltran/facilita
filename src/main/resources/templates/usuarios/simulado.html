@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+  <html xmlns:th="http://www.thymeleaf.org">
+  <html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Simulado Inicial</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+
+
+    <style>
+      #fundo {
+        background-color: #e6f5f7;
+
+      }
+
+      #quest {
+        width: 500px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 1px 5px 30px rgb(101, 155, 236);
+      }
+
+      #centro {
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body id="fundo">
+  <br>
+  <h2 id="centro">Simulado</h2>
+
+  <h5 id="centro">Está prova é um simulado que reproduz as caracteristicas e conteúdos das provas oficiais (UNESP,
+    ENEM, FUVESTE E\OU ENEM).</h5>
+  <div class="card" id="quest">
+
+    <div class="card-body">
+
+      <form action="/salvarRespostaDiagnostico" name="simuladoInicial" method="POST">
+        <div th:each="questao : ${questoes}">
+          <h3 th:text="${questao.getTexto()}"></h3>
+          <div th:each="alternativa : ${questao.getAlternativas()}">
+            <input th:name="${questao.getId()}" type="radio" th:value="${alternativa.getId()}" />
+            <label th:text="${alternativa.getTexto()}"></label>
+          </div>
+        </div>
+        <br />
+        <br />
+        <br />
+        <div class="position-absolute top-80 start-50 translate-middle">
+          <button type="submit" class="btn btn-outline-info">Enviar Respostas</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  </body>
+  </html>
