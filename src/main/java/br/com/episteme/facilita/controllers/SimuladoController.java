@@ -84,9 +84,9 @@ public class SimuladoController {
     @PostMapping("/diagnostico")
     public ModelAndView simuladoInicial(@RequestParam TipoDeProva tipoDeProva, @AuthenticationPrincipal User usuario) {
         ModelAndView mv = new ModelAndView("usuarios/diagnostico");
+        usuario.setFoco(tipoDeProva);
         Simulado simuladoDiagnostico = serviceSimulado.simuladoDiagnostico(tipoDeProva, usuario);
         ArrayList<Questao> questoes = new ArrayList<>(simuladoDiagnostico.getQuestoes());
-        usuario.setFoco(tipoDeProva);
         mv.addObject("questoes", questoes);
         mv.addObject("simuladoId", simuladoDiagnostico.getId());
         return mv;
@@ -113,13 +113,13 @@ public class SimuladoController {
 //        Simulado simulado =
 //        mv.addObject()
 //    }
-
-
-    @GetMapping("/{id}/delete")
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public ModelAndView deletarQuestao(@PathVariable Long id){
-        ModelAndView mv = new ModelAndView("redirect:/questoes");
-        this.questaoRepository.deleteById(id);
-        return mv;
-    }
+//
+//
+//    @GetMapping("/{id}/delete")
+//    @PreAuthorize("hasAuthority('ADMIN')")
+//    public ModelAndView deletarQuestao(@PathVariable Long id){
+//        ModelAndView mv = new ModelAndView("redirect:/questoes");
+//        this.questaoRepository.deleteById(id);
+//        return mv;
+//    }
 }

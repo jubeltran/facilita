@@ -1,46 +1,62 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
+
 <head>
+    <title>Simulados Sugeridos</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>CURSOS</title>
-    <link href="style.css" rel="stylesheet" type="text/css" />
-</head>
-
-<body>
-<h2>SIMULADOS SUGERIDOS</h2>
-<h4> De acordo com o seu desempenho, sugerimos a realização desses simulados, que contém suas maiores dificuldades.</h4>
-
-<br>
-<div class="x" >
-    <button:hover><img src="imagens/fuvest.png"  style="width:100%" ></button:hover>
-    <h4 class = "titulo" style="text-align:center"> FUVEST</h4>
-</div>
-
-<div class="x">
-    <button:hover><img src="imagens/enem.png"  style="width:100%" ></button:hover>
-    <h4 class = titulo" style="text-align:center">ENEM</h4>
-</div>
-
-<div class="x">
-    <button:hover><img src="imagens/vunesp.png"  style="width:100%"></button:hover>
-    <h4 class = "titulo" style="text-align:center">VUNESP</h4>
-
-</div>
-<h5> Nenhum é o que você imaginava? </h5>
-
-    <button>Criar Simulado Personalizado</button>
-
-    </div>
-    </div>
-    </div>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 
     <style>
-        div.x {
-            width: 300px;
-            display: inline-block;
+        #fundo {
+            background-color: #e6f5f7;
+        }
+
+        #bt{
+            border-radius: 30px;
+            color: #032870;
+            border-color: #032870;
+        }
+
+        #img{
+            border-radius: 35px;
         }
     </style>
-    <script src="script.js"></script>
+<body id="fundo">
+<div th:replace="navbar :: menuNav"></div>
+<br>
+<br>
+<h1 style="text-align: center;">Desempenho</h1>
+<br>
+<h2>Parabéns você concluiu a primeira etapa!</h2>
+<h3>Aqui está o seu número de acertos: </h3>
+<h3 th:text="${acertos}"></h3>
+<a>Vamos seguir essa jornada juntos?</a>
+<h4 style="text-align: center;"> De acordo com o seu desempenho, sugerimos a realização desses simulados, que contém suas maiores dificuldades.</h4>
+
+<div class="container" th:each="simulado : ${simulados}">
+    <div class="row align-items-start">
+        <div class="col">
+            <div class="x">
+                <button id="bt">
+                    <img  th:src="@{/images/sugerido.png}" id="img">
+                    <h4 class="titulo" style="text-align:center"> Acessar </h4>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+<style>
+    div.x {
+        width: 300px;
+        display: inline-block;
+    }
+</style>
+
+<script src="script.js"></script>
 </body>
 </html>

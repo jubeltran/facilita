@@ -14,7 +14,6 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.util.stream.Collectors;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity

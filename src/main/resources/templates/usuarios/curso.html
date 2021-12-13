@@ -11,6 +11,7 @@
     <script src="script.js"></script>
 
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cookie&display=swap');
         #fundo {
             background-color: #e6f5f7;
         }
@@ -18,10 +19,14 @@
         #curx {
             width: 100%;
         }
-
-        #texto {
+        #nome{
+            font-family: 'Cookie', cursive;
+            font-size: 100px;
             position: absolute;
-            margin-top: -30px;
+            margin-top: -200px;
+            margin-left: 550px;
+            margin-bottom: 200px;
+            color: #ffffff;
         }
     </style>
 </head>
@@ -29,12 +34,15 @@
 <body id="fundo">
 <div th:replace="navbar :: menuNav"></div>
 
-<img id="curx" th:src="@{/images/cursox.png}" style="width:100%">
-<div id="texto">
-    <h2 th:text="${curso.nome}"></h2>
+<div>
+    <img id="curx" th:src="@{/images/cursox.png}" style="width:100%">
+    <div>
+    <h2 id="nome" th:text="${curso.nome}">Farmácia</h2>
 </div>
+</div>
+
 <form id="favoritar" th:object="${usuario}" action="/addFav" method="POST">
-    <button:hover><img id="favorito" th:src="@{/images/favoritop.png}" style="width:60px"></button:hover>
+    <button type="submit"><img id="favorito" th:src="@{/images/favoritop.png}" style="width:60px"></button>
 </form>
 
 <p th:text="${curso.getDescricao()}"></p>

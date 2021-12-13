@@ -24,6 +24,7 @@
         }
     </style>
 <body id="fundo">
+<div th:replace="navbar :: menuNav"></div>
 <br>
 <br>
 <h1 style="text-align: center;">Desempenho</h1>
@@ -40,8 +41,7 @@
             <div class="x">
                 <button id="bt">
                     <img  th:src="@{/images/sugerido.png}" id="img">
-                    <!--<img id="enem" th:src="@{images/enem.png}" style="width:100%">-->
-                    <h4 class=titulo" style="text-align:center"> Acessar </h4>
+                    <h4 class="titulo" style="text-align:center"> Acessar </h4>
                 </button>
             </div>
         </div>
@@ -56,9 +56,6 @@
         display: inline-block;
     }
 </style>
-
-
-<div th:replace="navbar :: menuNav"></div>
 
 <script src="script.js"></script>
 </body>
