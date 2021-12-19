@@ -13,6 +13,10 @@
 
 
     <style>
+      h3 {
+        font-family: Roboto;
+        font-size: 0.7em;
+      }
       #fundo {
         background-color: #e6f5f7;
 
@@ -20,10 +24,8 @@
 
       #quest {
         width: 500px;
-        position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%);
         box-shadow: 1px 5px 30px rgb(101, 155, 236);
       }
 
@@ -38,11 +40,9 @@
   <h2 id="centro">Simulado</h2>
 
   <h5 id="centro">Está prova é um simulado que reproduz as caracteristicas e conteúdos das provas oficiais (UNESP,
-    ENEM, FUVESTE E\OU ENEM).</h5>
-  <div class="card" id="quest">
-
-    <div class="card-body">
-
+    ENEM, FUVEST E\OU ENEM).</h5>
+  <div id="quest">
+    <div>
       <form action="/salvarRespostaDiagnostico" name="simuladoInicial" method="POST">
         <div th:each="questao : ${questoes}">
           <h3 th:text="${questao.getTexto()}"></h3>
@@ -52,8 +52,8 @@
           </div>
         </div>
         <br />
-        <br />
-        <br />
+        <br/>
+        <br/>
         <div class="position-absolute top-80 start-50 translate-middle">
           <button type="submit" class="btn btn-outline-info">Enviar Respostas</button>
         </div>
